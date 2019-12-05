@@ -10,26 +10,20 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('/home/joonas/Desktop/Robot_touch/mainwindow.ui',
                    self)  # Load the .ui file
 
-        self.openFileNameDialog()
-        self.openFileNamesDialog()
-        self.saveFileDialog()
-
-        save_file = QtWidgets.QPushButton(save_file)
-        load_file = QtWidgets.QPushButton(load_file)
-        save_file.clicked.connect(self.saveFileDialog)
-        load_file.clicked.connect(self.openFileNameDialog)
+       
+        self.Load_file.clicked.connect(self.openFileNameDialog)
 
         self.show()  # Show the GUI
 
     def openFileNameDialog(self):
-        filename, filter = QtGui.QFileDialog.GetOpenFileName(
-            parent=self, caption='Open file', dir='.', filter='*.txt')
-        from os.path import isfile
+         fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/home')
+         file = open(fname, 'r')
 
-     if isfile(self.filename):
-         text = open(self.filename)
-         self.QtWidgets.PlainTextExit.setText(text)
+         with file:
+             text=file.read
+             self.programView.setText(text)
 
+    
     def saveFileDialog(self):
         pass
 
