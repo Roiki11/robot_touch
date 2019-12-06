@@ -1,13 +1,15 @@
 import sys
-from PyQt5 import QtWidgets, uic, QtGui
+import os
+from PyQt5 import uic, QtGui
 from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt5 import QtWidgets as qt
 
 
-class Ui(QtWidgets.QMainWindow):
+class Ui(qt.QMainWindow):
     def __init__(self):
         # Call the inherited classes __init__ method
         super(Ui, self).__init__()
-        uic.loadUi('/home/joonas/Desktop/Robot_touch/mainwindow.ui',
+        uic.loadUi(os.getcwd('mainwindow.ui')
                    self)  # Load the .ui file
 
        
@@ -16,7 +18,7 @@ class Ui(QtWidgets.QMainWindow):
         self.show()  # Show the GUI
 
     def openFileNameDialog(self):
-         fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/home')
+         fname = qt.QFileDialog.getOpenFileName(self, 'Open file', '/home')
          file = open(fname, 'r')
 
          with file:
@@ -28,7 +30,7 @@ class Ui(QtWidgets.QMainWindow):
         pass
 
 
-app = QtWidgets.QApplication(sys.argv)
+app = qt.QApplication(sys.argv)
 
 window = Ui()
 app.exec_()
