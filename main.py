@@ -9,8 +9,7 @@ class Ui(qt.QMainWindow):
     def __init__(self):
         # Call the inherited classes __init__ method
         super(Ui, self).__init__()
-        uic.loadUi(os.getcwd('mainwindow.ui')
-                   self)  # Load the .ui file
+        uic.loadUi(os.getcwd('mainwindow.ui', self)  # Load the .ui file
 
        
         self.Load_file.clicked.connect(self.openFileNameDialog)
