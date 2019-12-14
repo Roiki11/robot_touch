@@ -46,7 +46,7 @@
 '''
 ##########################################################################
 ##########################################################################
-import pickle
+import configparser
 import serial
 import time
 import threading
@@ -2220,344 +2220,132 @@ def CalcLinWayPt(CX,CY,CZ,curWayPt,):
 ### OPEN CAL FILE AND LOAD LIST ##############################################################################################################################
 ##############################################################################################################################################################
 
-calibration = Listbox(tab2,width=20,height=60)
-#calibration.place(x=160,y=170)
+def openCal():
+  config = configparser.ConfigParser()
+config.read('db.ini')
+
+  try:
+    with open('test.ini') as f:
+        config.read(f)
+  except IOError:
+    config.add_section('General')
+    config.add_section('DH parameters')
+    config.add_section('Limits')
+    config.add_section('Track')
+    config.add_section('Visual')
+    with open('config.cfg', 'w') as configfile:
+    config.write(configfile)
+ 
+  J1StepCur   =config['']['']
+  J1AngCur    =config['']['']
+  J2StepCur   =config['']['']
+  J2AngCur    =config['']['']
+  J3StepCur   =config['']['']
+  J3AngCur    =config['']['']
+  J4StepCur   =config['']['']
+  J4AngCur    =config['']['']
+  J5StepCur   =config['']['']
+  J5AngCur    =config['']['']
+  J6StepCur   =config['']['']
+  J6AngCur    =config['']['']
+  comPort     =config['General']['comPort1']
+  com2Port    =config['General']['comPort2']
+  Prog        =config['']['']
+  Servo0on    =config['']['']
+  Servo0off   =config['']['']
+  Servo1on    =config['']['']
+  Servo1off   =config['']['']
+  DO1on       =config['']['']
+  DO1off      =config['']['']
+  DO2on       =config['']['']
+  DO2off      =config['']['']
+  UFx         =config['']['']
+  UFy         =config['']['']
+  UFz         =config['']['']
+  UFrx        =config['']['']
+  UFry        =config['']['']
+  UFrz        =config['']['']
+  TFx         =config['']['']
+  TFy         =config['']['']
+  TFz         =config['']['']
+  TFrx        =config['']['']
+  TFry        =config['']['']
+  TFrz        =config['']['']
+  FineCalPos  =config['']['']
+
+  J1NegAngLim =config['Limits']['J1_Neg_Angle_Limit']
+  J1PosAngLim =config['Limits']['J1_Pos_Angle_Limit']
+  J1StepLim   =config['Limits']['J1_Step_limit']
+  J2NegAngLim =config['Limits']['J2_Neg_Angle_limit']
+  J2PosAngLim =config['Limits']['J2_Pos_Angle_limit']
+  J2StepLim   =config['Limits']['J2_Step_limit']
+  J3NegAngLim =config['Limits']['J3_Neg_Angle_limit']
+  J3PosAngLim =config['Limits']['J3_Pos_Angle_limit']
+  J3StepLim   =config['Limits']['J3_Step_limit']
+  J4NegAngLim =config['Limits']['J4_Neg_Angle_limit']
+  J4PosAngLim =config['Limits']['J4_Pos_Angle_limit']
+  J4StepLim   =config['Limits']['J4_Step_limit']
+  J5NegAngLim =config['Limits']['J5_Neg_Angle_limit']
+  J5PosAngLim =config['Limits']['J5_Pos_Angle_limit']
+  J5StepLim   =config['Limits']['J5_Step_limit']
+  J6NegAngLim =config['Limits']['J6_Neg_Angle_limit']
+  J6PosAngLim =config['Limits']['J6_Pos_Angle_limit']
+  J5StepLim   =config['Limits']['J6_Step_limit']
+
+  DHr1        =config['DH parameters']['DHr1']
+  DHr2        =config['DH parameters']['DHr2']
+  DHr3        =config['DH parameters']['DHr3']
+  DHr4        =config['DH parameters']['DHr4']
+  DHr5        =config['DH parameters']['DHr5']
+  DHr6        =config['DH parameters']['DHr6']
+  DHa1        =config['DH parameters']['DHa1']
+  DHa2        =config['DH parameters']['DHa2']
+  DHa3        =config['DH parameters']['DHa3']
+  DHa4        =config['DH parameters']['DHa4']
+  DHa5        =config['DH parameters']['DHa5']
+  DHa6        =config['DH parameters']['DHa6']
+  DHd1        =config['DH parameters']['DHd1']
+  DHd2        =config['DH parameters']['DHd2']
+  DHd3        =config['DH parameters']['DHd3']
+  DHd4        =config['DH parameters']['DHd4']
+  DHd5        =config['DH parameters']['DHd5']
+  DHd6        =config['DH parameters']['DHd6']
+  DHt1        =config['DH parameters']['DHt1']
+  DHt2        =config['DH parameters']['DHt2']
+  DHt3        =config['DH parameters']['DHt3']
+  DHt4        =config['DH parameters']['DHt4']
+  DHt5        =config['DH parameters']['DHt5']
+  DHt6        =config['DH parameters']['DHt6']
 
 
-try:
-  Cal = pickle.load(open("ARbot.cal","rb"))
-except:
-  Cal = "0"
-  pickle.dump(Cal,open("ARbot.cal","wb"))
-for item in Cal:
-  calibration.insert(END,item)
-J1StepCur   =calibration.get("0")
-J1AngCur    =calibration.get("1")
-J2StepCur   =calibration.get("2")
-J2AngCur    =calibration.get("3")
-J3StepCur   =calibration.get("4")
-J3AngCur    =calibration.get("5")
-J4StepCur   =calibration.get("6")
-J4AngCur    =calibration.get("7")
-J5StepCur   =calibration.get("8")
-J5AngCur    =calibration.get("9")
-J6StepCur   =calibration.get("10")
-J6AngCur    =calibration.get("11")
-comPort     =calibration.get("12")
-Prog        =calibration.get("13")
-Servo0on    =calibration.get("14")
-Servo0off   =calibration.get("15")
-Servo1on    =calibration.get("16")
-Servo1off   =calibration.get("17")
-DO1on       =calibration.get("18")
-DO1off      =calibration.get("19")
-DO2on       =calibration.get("20")
-DO2off      =calibration.get("21")
-UFx         =calibration.get("22")
-UFy         =calibration.get("23")
-UFz         =calibration.get("24")
-UFrx        =calibration.get("25")
-UFry        =calibration.get("26")
-UFrz        =calibration.get("27")
-TFx         =calibration.get("28")
-TFy         =calibration.get("29")
-TFz         =calibration.get("30")
-TFrx        =calibration.get("31")
-TFry        =calibration.get("32")
-TFrz        =calibration.get("33")
-FineCalPos  =calibration.get("34")
-J1NegAngLim =calibration.get("35")
-J1PosAngLim =calibration.get("36")
-J1StepLim   =calibration.get("37")
-J2NegAngLim =calibration.get("38")
-J2PosAngLim =calibration.get("39")
-J2StepLim   =calibration.get("40")
-J3NegAngLim =calibration.get("41")
-J3PosAngLim =calibration.get("42")
-J3StepLim   =calibration.get("43")
-J4NegAngLim =calibration.get("44")
-J4PosAngLim =calibration.get("45")
-J4StepLim   =calibration.get("46")
-J5NegAngLim =calibration.get("47")
-J5PosAngLim =calibration.get("48")
-J5StepLim   =calibration.get("49")
-J6NegAngLim =calibration.get("50")
-J6PosAngLim =calibration.get("51")
-J6StepLim   =calibration.get("52")
-DHr1        =calibration.get("53")
-DHr2        =calibration.get("54")
-DHr3        =calibration.get("55")
-DHr4        =calibration.get("56")
-DHr5        =calibration.get("57")
-DHr6        =calibration.get("58")
-DHa1        =calibration.get("59")
-DHa2        =calibration.get("60")
-DHa3        =calibration.get("61")
-DHa4        =calibration.get("62")
-DHa5        =calibration.get("63")
-DHa6        =calibration.get("64")
-DHd1        =calibration.get("65")
-DHd2        =calibration.get("66")
-DHd3        =calibration.get("67")
-DHd4        =calibration.get("68")
-DHd5        =calibration.get("69")
-DHd6        =calibration.get("70")
-DHt1        =calibration.get("71")
-DHt2        =calibration.get("72")
-DHt3        =calibration.get("73")
-DHt4        =calibration.get("74")
-DHt5        =calibration.get("75")
-DHt6        =calibration.get("76")
-CalDir      =calibration.get("77")
-MotDir      =calibration.get("78")
-TrackcurPos =calibration.get("79")
-TrackLength =calibration.get("80")
-TrackStepLim=calibration.get("81")
-VisFileLoc  =calibration.get("82")
-VisProg     =calibration.get("83")
-VisOrigXpix =calibration.get("84")
-VisOrigXmm  =calibration.get("85")
-VisOrigYpix =calibration.get("86")
-VisOrigYmm  =calibration.get("87")
-VisEndXpix  =calibration.get("88")
-VisEndXmm   =calibration.get("89")
-VisEndYpix  =calibration.get("90")
-VisEndYmm   =calibration.get("91")
-com2Port    =calibration.get("92")
-J1OpenLoopVal=calibration.get("93")
-J2OpenLoopVal=calibration.get("94")
-J3OpenLoopVal=calibration.get("95")
-J4OpenLoopVal=calibration.get("96")
-J5OpenLoopVal=calibration.get("97")
-J6OpenLoopVal=calibration.get("98")
+  CalDir      =config['General']['Calibration_direction']
+  MotDir      =config['General']['Motion_direction']
+  TrackcurPos =config['Track']['']
+  TrackLength =config['Track']['Track_legth']
+  TrackStepLim=config['Track']['Track_step_limit']
+
+  VisFileLoc  =config['Visual']['Vis_File_Location']
+  VisProg     =config['Visual']['']
+  VisOrigXpix =config['Visual']['origin_x_pixels']
+  VisOrigXmm  =config['Visual']['origin_x_mm']
+  VisOrigYpix =config['Visual']['origin_y_pixels']
+  VisOrigYmm  =config['Visual']['origin_y_mm']
+  VisEndXpix  =config['Visual']['end_x_pixels']
+  VisEndXmm   =config['Visual']['end_x_mm']
+  VisEndYpix  =config['Visual']['end_y_pixels']
+  VisEndYmm   =config['Visual']['end_y_mm']
+
+  
+  J1OpenLoopVal=config['']['']
+  J2OpenLoopVal=config['']['']
+  J3OpenLoopVal=config['']['']
+  J4OpenLoopVal=config['']['']
+  J5OpenLoopVal=config['']['']
+  J6OpenLoopVal=config['']['']
 
 
 ####
 
-J1curAngEntryField.insert(0,str(J1AngCur))
-J2curAngEntryField.insert(0,str(J2AngCur))
-J3curAngEntryField.insert(0,str(J3AngCur))
-J4curAngEntryField.insert(0,str(J4AngCur))
-J5curAngEntryField.insert(0,str(J5AngCur))
-J6curAngEntryField.insert(0,str(J6AngCur))
-comPortEntryField.insert(0,str(comPort))
-com2PortEntryField.insert(0,str(com2Port))
-speedEntryField.insert(0,"25")
-ACCdurField.insert(0,"15")
-ACCspeedField.insert(0,"10")
-DECdurField.insert(0,"20")
-DECspeedField.insert(0,"5")
-ProgEntryField.insert(0,(Prog))
-SavePosEntryField.insert(0,"1")
-J1jogDegsEntryField.insert(0,"10")
-J2jogDegsEntryField.insert(0,"10")
-J3jogDegsEntryField.insert(0,"10")
-J4jogDegsEntryField.insert(0,"10")
-J5jogDegsEntryField.insert(0,"10")
-J6jogDegsEntryField.insert(0,"10")
-XjogEntryField.insert(0,"20")
-YjogEntryField.insert(0,"20")
-ZjogEntryField.insert(0,"20")
-RxjogEntryField.insert(0,"20")
-RyjogEntryField.insert(0,"20")
-RzjogEntryField.insert(0,"20")
-TXjogEntryField.insert(0,"20")
-TYjogEntryField.insert(0,"20")
-TZjogEntryField.insert(0,"20")
-TRxjogEntryField.insert(0,"20")
-TRyjogEntryField.insert(0,"20")
-TRzjogEntryField.insert(0,"20")
-R1EntryField.insert(0,"0")
-R2EntryField.insert(0,"0")
-R3EntryField.insert(0,"0")
-R4EntryField.insert(0,"0")
-R5EntryField.insert(0,"0")
-R6EntryField.insert(0,"0")
-R7EntryField.insert(0,"0")
-R8EntryField.insert(0,"0")
-R9EntryField.insert(0,"0")
-R10EntryField.insert(0,"0")
-R11EntryField.insert(0,"0")
-R12EntryField.insert(0,"0")
-R13EntryField.insert(0,"0")
-R14EntryField.insert(0,"0")
-R15EntryField.insert(0,"0")
-R16EntryField.insert(0,"0")
-SP_1_E1_EntryField.insert(0,"0")
-SP_2_E1_EntryField.insert(0,"0")
-SP_3_E1_EntryField.insert(0,"0")
-SP_4_E1_EntryField.insert(0,"0")
-SP_5_E1_EntryField.insert(0,"0")
-SP_6_E1_EntryField.insert(0,"0")
-SP_7_E1_EntryField.insert(0,"0")
-SP_8_E1_EntryField.insert(0,"0")
-SP_9_E1_EntryField.insert(0,"0")
-SP_10_E1_EntryField.insert(0,"0")
-SP_11_E1_EntryField.insert(0,"0")
-SP_12_E1_EntryField.insert(0,"0")
-SP_13_E1_EntryField.insert(0,"0")
-SP_14_E1_EntryField.insert(0,"0")
-SP_15_E1_EntryField.insert(0,"0")
-SP_16_E1_EntryField.insert(0,"0")
-SP_1_E2_EntryField.insert(0,"0")
-SP_2_E2_EntryField.insert(0,"0")
-SP_3_E2_EntryField.insert(0,"0")
-SP_4_E2_EntryField.insert(0,"0")
-SP_5_E2_EntryField.insert(0,"0")
-SP_6_E2_EntryField.insert(0,"0")
-SP_7_E2_EntryField.insert(0,"0")
-SP_8_E2_EntryField.insert(0,"0")
-SP_9_E2_EntryField.insert(0,"0")
-SP_10_E2_EntryField.insert(0,"0")
-SP_11_E2_EntryField.insert(0,"0")
-SP_12_E2_EntryField.insert(0,"0")
-SP_13_E2_EntryField.insert(0,"0")
-SP_14_E2_EntryField.insert(0,"0")
-SP_15_E2_EntryField.insert(0,"0")
-SP_16_E2_EntryField.insert(0,"0")
-SP_1_E3_EntryField.insert(0,"0")
-SP_2_E3_EntryField.insert(0,"0")
-SP_3_E3_EntryField.insert(0,"0")
-SP_4_E3_EntryField.insert(0,"0")
-SP_5_E3_EntryField.insert(0,"0")
-SP_6_E3_EntryField.insert(0,"0")
-SP_7_E3_EntryField.insert(0,"0")
-SP_8_E3_EntryField.insert(0,"0")
-SP_9_E3_EntryField.insert(0,"0")
-SP_10_E3_EntryField.insert(0,"0")
-SP_11_E3_EntryField.insert(0,"0")
-SP_12_E3_EntryField.insert(0,"0")
-SP_13_E3_EntryField.insert(0,"0")
-SP_14_E3_EntryField.insert(0,"0")
-SP_15_E3_EntryField.insert(0,"0")
-SP_16_E3_EntryField.insert(0,"0")
-SP_1_E4_EntryField.insert(0,"0")
-SP_2_E4_EntryField.insert(0,"0")
-SP_3_E4_EntryField.insert(0,"0")
-SP_4_E4_EntryField.insert(0,"0")
-SP_5_E4_EntryField.insert(0,"0")
-SP_6_E4_EntryField.insert(0,"0")
-SP_7_E4_EntryField.insert(0,"0")
-SP_8_E4_EntryField.insert(0,"0")
-SP_9_E4_EntryField.insert(0,"0")
-SP_10_E4_EntryField.insert(0,"0")
-SP_11_E4_EntryField.insert(0,"0")
-SP_12_E4_EntryField.insert(0,"0")
-SP_13_E4_EntryField.insert(0,"0")
-SP_14_E4_EntryField.insert(0,"0")
-SP_15_E4_EntryField.insert(0,"0")
-SP_16_E4_EntryField.insert(0,"0")
-SP_1_E5_EntryField.insert(0,"0")
-SP_2_E5_EntryField.insert(0,"0")
-SP_3_E5_EntryField.insert(0,"0")
-SP_4_E5_EntryField.insert(0,"0")
-SP_5_E5_EntryField.insert(0,"0")
-SP_6_E5_EntryField.insert(0,"0")
-SP_7_E5_EntryField.insert(0,"0")
-SP_8_E5_EntryField.insert(0,"0")
-SP_9_E5_EntryField.insert(0,"0")
-SP_10_E5_EntryField.insert(0,"0")
-SP_11_E5_EntryField.insert(0,"0")
-SP_12_E5_EntryField.insert(0,"0")
-SP_13_E5_EntryField.insert(0,"0")
-SP_14_E5_EntryField.insert(0,"0")
-SP_15_E5_EntryField.insert(0,"0")
-SP_16_E5_EntryField.insert(0,"0")
-SP_1_E6_EntryField.insert(0,"0")
-SP_2_E6_EntryField.insert(0,"0")
-SP_3_E6_EntryField.insert(0,"0")
-SP_4_E6_EntryField.insert(0,"0")
-SP_5_E6_EntryField.insert(0,"0")
-SP_6_E6_EntryField.insert(0,"0")
-SP_7_E6_EntryField.insert(0,"0")
-SP_8_E6_EntryField.insert(0,"0")
-SP_9_E6_EntryField.insert(0,"0")
-SP_10_E6_EntryField.insert(0,"0")
-SP_11_E6_EntryField.insert(0,"0")
-SP_12_E6_EntryField.insert(0,"0")
-SP_13_E6_EntryField.insert(0,"0")
-SP_14_E6_EntryField.insert(0,"0")
-SP_15_E6_EntryField.insert(0,"0")
-SP_16_E6_EntryField.insert(0,"0")
-servo0onEntryField.insert(0,str(Servo0on))
-servo0offEntryField.insert(0,str(Servo0off))
-servo1onEntryField.insert(0,str(Servo1on))
-servo1offEntryField.insert(0,str(Servo1off))
-DO1onEntryField.insert(0,str(DO1on))
-DO1offEntryField.insert(0,str(DO1off))
-DO2onEntryField.insert(0,str(DO2on))
-DO2offEntryField.insert(0,str(DO2off))
-UFxEntryField.insert(0,str(UFx))
-UFyEntryField.insert(0,str(UFy))
-UFzEntryField.insert(0,str(UFz))
-UFrxEntryField.insert(0,str(UFrx))
-UFryEntryField.insert(0,str(UFry))
-UFrzEntryField.insert(0,str(UFrz))
-TFxEntryField.insert(0,str(TFx))
-TFyEntryField.insert(0,str(TFy))
-TFzEntryField.insert(0,str(TFz))
-TFrxEntryField.insert(0,str(TFrx))
-TFryEntryField.insert(0,str(TFry))
-TFrzEntryField.insert(0,str(TFrz))
-fineCalEntryField.insert(0,str(FineCalPos))
-J1NegAngLimEntryField.insert(0,str(J1NegAngLim))
-J1PosAngLimEntryField.insert(0,str(J1PosAngLim))
-J1StepLimEntryField.insert(0,str(J1StepLim))
-J2NegAngLimEntryField.insert(0,str(J2NegAngLim))
-J2PosAngLimEntryField.insert(0,str(J2PosAngLim))
-J2StepLimEntryField.insert(0,str(J2StepLim))
-J3NegAngLimEntryField.insert(0,str(J3NegAngLim))
-J3PosAngLimEntryField.insert(0,str(J3PosAngLim))
-J3StepLimEntryField.insert(0,str(J3StepLim))
-J4NegAngLimEntryField.insert(0,str(J4NegAngLim))
-J4PosAngLimEntryField.insert(0,str(J4PosAngLim))
-J4StepLimEntryField.insert(0,str(J4StepLim))
-J5NegAngLimEntryField.insert(0,str(J5NegAngLim))
-J5PosAngLimEntryField.insert(0,str(J5PosAngLim))
-J5StepLimEntryField.insert(0,str(J5StepLim))
-J6NegAngLimEntryField.insert(0,str(J6NegAngLim))
-J6PosAngLimEntryField.insert(0,str(J6PosAngLim))
-J6StepLimEntryField.insert(0,str(J6StepLim))
-DHr1EntryField.insert(0,str(DHr1))
-DHr2EntryField.insert(0,str(DHr2))
-DHr3EntryField.insert(0,str(DHr3))
-DHr4EntryField.insert(0,str(DHr4))
-DHr5EntryField.insert(0,str(DHr5))
-DHr6EntryField.insert(0,str(DHr6))
-DHa1EntryField.insert(0,str(DHa1))
-DHa2EntryField.insert(0,str(DHa2))
-DHa3EntryField.insert(0,str(DHa3))
-DHa4EntryField.insert(0,str(DHa4))
-DHa5EntryField.insert(0,str(DHa5))
-DHa6EntryField.insert(0,str(DHa6))
-DHd1EntryField.insert(0,str(DHd1))
-DHd2EntryField.insert(0,str(DHd2))
-DHd3EntryField.insert(0,str(DHd3))
-DHd4EntryField.insert(0,str(DHd4))
-DHd5EntryField.insert(0,str(DHd5))
-DHd6EntryField.insert(0,str(DHd6))
-DHt1EntryField.insert(0,str(DHt1))
-DHt2EntryField.insert(0,str(DHt2))
-DHt3EntryField.insert(0,str(DHt3))
-DHt4EntryField.insert(0,str(DHt4))
-DHt5EntryField.insert(0,str(DHt5))
-DHt6EntryField.insert(0,str(DHt6))
-CalDirEntryField.insert(0,str(CalDir))
-MotDirEntryField.insert(0,str(MotDir))
-TrackcurEntryField.insert(0,str(TrackcurPos))
-TrackjogEntryField.insert(0,"10")
-TrackLengthEntryField.insert(0,str(TrackLength))
-TrackStepLimEntryField.insert(0,str(TrackStepLim))
-VisFileLocEntryField.insert(0,str(VisFileLoc))
-visoptions.set(VisProg)
-VisPicOxPEntryField.insert(0,str(VisOrigXpix))
-VisPicOxMEntryField.insert(0,str(VisOrigXmm))
-VisPicOyPEntryField.insert(0,str(VisOrigYpix))
-VisPicOyMEntryField.insert(0,str(VisOrigYmm))
-VisPicXPEntryField.insert(0,str(VisEndXpix))
-VisPicXMEntryField.insert(0,str(VisEndXmm))
-VisPicYPEntryField.insert(0,str(VisEndYpix))
-VisPicYMEntryField.insert(0,str(VisEndYmm))
 if (J1OpenLoopVal == 1):
   J1OpenLoopCbut.select()
 if (J2OpenLoopVal == 1):
@@ -2600,18 +2388,3 @@ Copyright (c) 2019, Chris Annin"
 tkinter.messagebox.showwarning("ARCS License / Copyright notice", msg)
 xboxUse = 0
 
-global blockEncPosCal
-blockEncPosCal = 0
-global blockEncPosMove
-blockEncPosMove = 0
-  
-monitor = threading.Thread(target=monitorEnc)
-monitor.start()
-
-tab1.mainloop()
-
-
-
-
-#manEntryField.delete(0, 'end')
-#manEntryField.insert(0,value)
