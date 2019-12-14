@@ -1,4 +1,4 @@
-class move():
+class move:
   def MoveXYZ(CX,CY,CZ,CRx,CRy,CRz,newSpeed,ACCdur,ACCspd,DECdur,DECspd,WC,TCX,TCY,TCZ,TCRx,TCRy,TCRz,Track,Code):
         global commandCalc
         global blockEncPosMove
@@ -8,8 +8,7 @@ class move():
         blockEncPosMove = 0
         if Code == 2 or Code == 3:
             return(commandCalc)
-
-    def MoveNew(J1out,J2out,J3out,J4out,J5out,J6out,newSpeed,ACCdur,ACCspd,DECdur,DECspd,Track,Code):
+  def MoveNew(J1out,J2out,J3out,J4out,J5out,J6out,newSpeed,ACCdur,ACCspd,DECdur,DECspd,Track,Code):
         global xboxUse
         if xboxUse != 1:
             almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
@@ -93,177 +92,165 @@ class move():
         else:  
             ##J1 calc##
             if (float(J1newAng) >= float(J1AngCur)):   
-            #calc pos dir output
-            if (J1motdir == "0"):
-                J1drivedir = "1"
-            else:
-                J1drivedir = "0"
-            J1dir = J1drivedir
-            J1calcAng = float(J1newAng) - float(J1AngCur)
-            J1steps = int(J1calcAng / J1DegPerStep)
-            if Code != 3:
-                J1StepCur = J1StepCur + J1steps #Invert       
-                J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
-            J1steps = str(J1steps) 
+                #calc pos dir output
+                if (J1motdir == "0"):
+                    J1drivedir = "1"
+                else:
+                    J1drivedir = "0"
+                J1dir = J1drivedir
+                J1calcAng = float(J1newAng) - float(J1AngCur)
+                J1steps = int(J1calcAng / J1DegPerStep)
+                if Code != 3:
+                    J1StepCur = J1StepCur + J1steps #Invert       
+                    J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
+                J1steps = str(J1steps) 
             elif (float(J1newAng) < float(J1AngCur)):
-            J1dir = J1motdir
-            J1calcAng = float(J1AngCur) - float(J1newAng)
-            J1steps = int(J1calcAng / J1DegPerStep)
-            if Code != 3:
-                J1StepCur = J1StepCur - J1steps #Invert       
-                J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
-            J1steps = str(J1steps) 
+                J1dir = J1motdir
+                J1calcAng = float(J1AngCur) - float(J1newAng)
+                J1steps = int(J1calcAng / J1DegPerStep)
+                if Code != 3:
+                    J1StepCur = J1StepCur - J1steps #Invert       
+                    J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
+                J1steps = str(J1steps) 
             ##J2 calc##
             if (float(J2newAng) >= float(J2AngCur)):   
             #calc pos dir output
-            if (J2motdir == "0"):
-                J2drivedir = "1"
-            else:
-                J2drivedir = "0"
-            J2dir = J2drivedir
-            J2calcAng = float(J2newAng) - float(J2AngCur)
-            J2steps = int(J2calcAng / J2DegPerStep)
-            if Code != 3:
-                J2StepCur = J2StepCur + J2steps #Invert       
-                J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
-            J2steps = str(J2steps) 
+                if (J2motdir == "0"):
+                    J2drivedir = "1"
+                else:
+                    J2drivedir = "0"
+                J2dir = J2drivedir
+                J2calcAng = float(J2newAng) - float(J2AngCur)
+                J2steps = int(J2calcAng / J2DegPerStep)
+                if Code != 3:
+                    J2StepCur = J2StepCur + J2steps #Invert       
+                    J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
+                J2steps = str(J2steps) 
             elif (float(J2newAng) < float(J2AngCur)):
-            J2dir = J2motdir
-            J2calcAng = float(J2AngCur) - float(J2newAng)
-            J2steps = int(J2calcAng / J2DegPerStep)
-            if Code != 3:
-                J2StepCur = J2StepCur - J2steps #Invert       
-                J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
-            J2steps = str(J2steps) 
+                J2dir = J2motdir
+                J2calcAng = float(J2AngCur) - float(J2newAng)
+                J2steps = int(J2calcAng / J2DegPerStep)
+                if Code != 3:
+                    J2StepCur = J2StepCur - J2steps #Invert       
+                    J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
+                J2steps = str(J2steps) 
             ##J3 calc##
             if (float(J3newAng) >= float(J3AngCur)):   
             #calc pos dir output
-            if (J3motdir == "0"):
-                J3drivedir = "1"
-            else:
-                J3drivedir = "0"
-            J3dir = J3drivedir
-            J3calcAng = float(J3newAng) - float(J3AngCur)
-            J3steps = int(J3calcAng / J3DegPerStep)
-            if Code != 3:
-                J3StepCur = J3StepCur + J3steps #Invert       
-                J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
-            J3steps = str(J3steps) 
+                if (J3motdir == "0"):
+                    J3drivedir = "1"
+                else:
+                    J3drivedir = "0"
+                J3dir = J3drivedir
+                J3calcAng = float(J3newAng) - float(J3AngCur)
+                J3steps = int(J3calcAng / J3DegPerStep)
+                if Code != 3:
+                    J3StepCur = J3StepCur + J3steps #Invert       
+                    J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
+                J3steps = str(J3steps) 
             elif (float(J3newAng) < float(J3AngCur)):
-            J3dir = J3motdir
-            J3calcAng = float(J3AngCur) - float(J3newAng)
-            J3steps = int(J3calcAng / J3DegPerStep)
-            if Code != 3:
-                J3StepCur = J3StepCur - J3steps #Invert       
-                J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
-            J3steps = str(J3steps) 
+                J3dir = J3motdir
+                J3calcAng = float(J3AngCur) - float(J3newAng)
+                J3steps = int(J3calcAng / J3DegPerStep)
+                if Code != 3:
+                    J3StepCur = J3StepCur - J3steps #Invert       
+                    J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
+                J3steps = str(J3steps) 
             ##J4 calc##
             if (float(J4newAng) >= float(J4AngCur)):   
             #calc pos dir output
-            if (J4motdir == "0"):
-                J4drivedir = "1"
-            else:
-                J4drivedir = "0"
-            J4dir = J4drivedir
-            J4calcAng = float(J4newAng) - float(J4AngCur)
-            J4steps = int(J4calcAng / J4DegPerStep)
-            if Code != 3:
-                J4StepCur = J4StepCur + J4steps #Invert       
-                J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
-            J4steps = str(J4steps) 
+                if (J4motdir == "0"):
+                    J4drivedir = "1"
+                else:
+                    J4drivedir = "0"
+                J4dir = J4drivedir
+                J4calcAng = float(J4newAng) - float(J4AngCur)
+                J4steps = int(J4calcAng / J4DegPerStep)
+                if Code != 3:
+                    J4StepCur = J4StepCur + J4steps #Invert       
+                    J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
+                J4steps = str(J4steps) 
             elif (float(J4newAng) < float(J4AngCur)):
-            J4dir = J4motdir
-            J4calcAng = float(J4AngCur) - float(J4newAng)
-            J4steps = int(J4calcAng / J4DegPerStep)
-            if Code != 3:
-                J4StepCur = J4StepCur - J4steps #Invert       
-                J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
-            J4steps = str(J4steps) 
+                J4dir = J4motdir
+                J4calcAng = float(J4AngCur) - float(J4newAng)
+                J4steps = int(J4calcAng / J4DegPerStep)
+                if Code != 3:
+                    J4StepCur = J4StepCur - J4steps #Invert       
+                    J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
+                J4steps = str(J4steps) 
             ##J5 calc##
             if (float(J5newAng) >= float(J5AngCur)):   
             #calc pos dir output
-            if (J5motdir == "0"):
-                J5drivedir = "1"
-            else:
-                J5drivedir = "0"
-            J5dir = J5drivedir
-            J5calcAng = float(J5newAng) - float(J5AngCur)
-            J5steps = int(J5calcAng / J5DegPerStep)
-            if Code != 3:
-                J5StepCur = J5StepCur + J5steps #Invert       
-                J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
-            J5steps = str(J5steps) 
+                if (J5motdir == "0"):
+                    J5drivedir = "1"
+                else:
+                    J5drivedir = "0"
+                J5dir = J5drivedir
+                J5calcAng = float(J5newAng) - float(J5AngCur)
+                J5steps = int(J5calcAng / J5DegPerStep)
+                if Code != 3:
+                    J5StepCur = J5StepCur + J5steps #Invert       
+                    J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
+                J5steps = str(J5steps) 
             elif (float(J5newAng) < float(J5AngCur)):
-            J5dir = J5motdir
-            J5calcAng = float(J5AngCur) - float(J5newAng)
-            J5steps = int(J5calcAng / J5DegPerStep)
-            if Code != 3:
-                J5StepCur = J5StepCur - J5steps #Invert       
-                J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
-            J5steps = str(J5steps) 
+                J5dir = J5motdir
+                J5calcAng = float(J5AngCur) - float(J5newAng)
+                J5steps = int(J5calcAng / J5DegPerStep)
+                if Code != 3:
+                    J5StepCur = J5StepCur - J5steps #Invert       
+                    J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
+                J5steps = str(J5steps) 
             ##J6 calc##
             if (float(J6newAng) >= float(J6AngCur)):   
             #calc pos dir output
-            if (J6motdir == "0"):
-                J6drivedir = "1"
-            else:
-                J6drivedir = "0"
-            J6dir = J6drivedir
-            J6calcAng = float(J6newAng) - float(J6AngCur)
-            J6steps = int(J6calcAng / J6DegPerStep)
-            if Code != 3:
-                J6StepCur = J6StepCur + J6steps #Invert       
-                J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
-            J6steps = str(J6steps) 
+                if (J6motdir == "0"):
+                    J6drivedir = "1"
+                else:
+                    J6drivedir = "0"
+                J6dir = J6drivedir
+                J6calcAng = float(J6newAng) - float(J6AngCur)
+                J6steps = int(J6calcAng / J6DegPerStep)
+                if Code != 3:
+                    J6StepCur = J6StepCur + J6steps #Invert       
+                    J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
+                J6steps = str(J6steps) 
             elif (float(J6newAng) < float(J6AngCur)):
-            J6dir = J6motdir
-            J6calcAng = float(J6AngCur) - float(J6newAng)
-            J6steps = int(J6calcAng / J6DegPerStep)
-            if Code != 3:
-                J6StepCur = J6StepCur - J6steps #Invert       
-                J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
-            J6steps = str(J6steps)
+                J6dir = J6motdir
+                J6calcAng = float(J6AngCur) - float(J6newAng)
+                J6steps = int(J6calcAng / J6DegPerStep)
+                if Code != 3:
+                    J6StepCur = J6StepCur - J6steps #Invert       
+                    J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
+                J6steps = str(J6steps)
             ##Track calc##
             if (TrackNew >= TrackcurPos):
-            TRdir = "1"
-            TRdist = TrackNew - TrackcurPos
-            TRstep = str(int((TrackStepLim/TrackLength)*TRdist))
+                TRdir = "1"
+                TRdist = TrackNew - TrackcurPos
+                TRstep = str(int((TrackStepLim/TrackLength)*TRdist))
             else:
-            TRdir = "0"
-            TRdist = TrackcurPos - TrackNew	
-            TRstep = str(int((TrackStepLim/TrackLength)*TRdist))
+                TRdir = "0"
+                TRdist = TrackcurPos - TrackNew	
+                TRstep = str(int((TrackStepLim/TrackLength)*TRdist))
             TrackcurPos = TrackNew
             TrackcurEntryField.delete(0, 'end')  
             TrackcurEntryField.insert(0,str(TrackcurPos))
             commandCalc = "MJA"+J1dir+J1steps+"B"+J2dir+J2steps+"C"+J3dir+J3steps+"D"+J4dir+J4steps+"E"+J5dir+J5steps+"F"+J6dir+J6steps+"T"+TRdir+TRstep+"S"+newSpeed+"G"+ACCdur+"H"+ACCspd+"I"+DECdur+"K"+DECspd+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
             if Code == 0:
-            ser.write(commandCalc.encode())
-            ser.flushInput()
-            time.sleep(.01)
-            #ser.read() 
-            RobotCode = str(ser.readline())
-            Pcode = RobotCode[2:4]
-            if (Pcode == "01"):
-                applyRobotCal(RobotCode)       
-            J1curAngEntryField.delete(0, 'end')
-            J1curAngEntryField.insert(0,str(J1AngCur))
-            J2curAngEntryField.delete(0, 'end')
-            J2curAngEntryField.insert(0,str(J2AngCur))
-            J3curAngEntryField.delete(0, 'end')
-            J3curAngEntryField.insert(0,str(J3AngCur))
-            J4curAngEntryField.delete(0, 'end')
-            J4curAngEntryField.insert(0,str(J4AngCur))
-            J5curAngEntryField.delete(0, 'end')
-            J5curAngEntryField.insert(0,str(J5AngCur))
-            J6curAngEntryField.delete(0, 'end')
-            J6curAngEntryField.insert(0,str(J6AngCur))
+                ser.write(commandCalc.encode())
+                ser.flushInput()
+                time.sleep(.01)
+                #ser.read() 
+                RobotCode = str(ser.readline())
+                Pcode = RobotCode[2:4]
+                if (Pcode == "01"):
+                    applyRobotCal(RobotCode)       
             CalcFwdKin()
             DisplaySteps()
             savePosData() 
             if Code == 2 or Code == 3 :
-            return(commandCalc)	
+                return(commandCalc)	
 
-    def executeRow():
+  def executeRow():
         global J1AngCur
         global J2AngCur
         global J3AngCur
@@ -336,10 +323,10 @@ class move():
             time.sleep(.2)
             value = ser2.readline()
             if (value == b'T'):
-            index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
-            index = index-1
-            tab1.progView.selection_clear(0, END)
-            tab1.progView.select_set(index)
+                index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
+                index = index-1
+                tab1.progView.selection_clear(0, END)
+                tab1.progView.select_set(index)
         ##If Input Off Jump to Tab##
         if (cmdType == "If Off"):
             inputIndex = command.find("Input-")
@@ -352,10 +339,10 @@ class move():
             time.sleep(.2)
             value = ser2.readline()
             if (value == b'F'):
-            index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
-            index = index-1
-            tab1.progView.selection_clear(0, END)
-            tab1.progView.select_set(index)
+                index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
+                index = index-1
+                tab1.progView.selection_clear(0, END)
+                tab1.progView.select_set(index)
         ##Jump to Row##
         if (cmdType == "Jump T"):
             tabIndex = command.find("Tab-")
@@ -416,17 +403,17 @@ class move():
             regEntry = "R"+regNumVal+"EntryField"
             testOper = str(command[regEqIndex+3:regEqIndex+5])
             if (testOper == "++"):
-            regCEqVal = str(command[regEqIndex+5:])
-            curRegVal = eval(regEntry).get()
-            regEqVal = str(int(regCEqVal)+int(curRegVal))      
+                regCEqVal = str(command[regEqIndex+5:])
+                curRegVal = eval(regEntry).get()
+                regEqVal = str(int(regCEqVal)+int(curRegVal))      
             elif (testOper == "--"):
-            regCEqVal = str(command[regEqIndex+5:])
-            curRegVal = eval(regEntry).get()
-            regEqVal = str(int(curRegVal)-int(regCEqVal))
+                regCEqVal = str(command[regEqIndex+5:])
+                curRegVal = eval(regEntry).get()
+                regEqVal = str(int(curRegVal)-int(regCEqVal))
             else:
-            regEqVal = str(command[regEqIndex+3:])    
-            eval(regEntry).delete(0, 'end')
-            eval(regEntry).insert(0,regEqVal)
+                regEqVal = str(command[regEqIndex+3:])    
+                eval(regEntry).delete(0, 'end')
+                eval(regEntry).insert(0,regEqVal)
         ##Set Stor Position##  
         if (cmdType == "Store "):
             regNumIndex = command.find("Store Position ")
@@ -437,17 +424,17 @@ class move():
             regEntry = "SP_"+regNumVal+"_E"+regNumEl+"_EntryField"
             testOper = str(command[regEqIndex+3:regEqIndex+5])
             if (testOper == "++"):
-            regCEqVal = str(command[regEqIndex+4:])
-            curRegVal = eval(regEntry).get()
-            regEqVal = str(float(regCEqVal)+float(curRegVal))      
+                regCEqVal = str(command[regEqIndex+4:])
+                curRegVal = eval(regEntry).get()
+                regEqVal = str(float(regCEqVal)+float(curRegVal))      
             elif (testOper == "--"):
-            regCEqVal = str(command[regEqIndex+5:])
-            curRegVal = eval(regEntry).get()
-            regEqVal = str(float(curRegVal)-float(regCEqVal))
+                regCEqVal = str(command[regEqIndex+5:])
+                curRegVal = eval(regEntry).get()
+                regEqVal = str(float(curRegVal)-float(regCEqVal))
             else:
-            regEqVal = str(command[regEqIndex+3:])    
-            eval(regEntry).delete(0, 'end')
-            eval(regEntry).insert(0,regEqVal)
+                regEqVal = str(command[regEqIndex+3:])    
+                eval(regEntry).delete(0, 'end')
+                eval(regEntry).insert(0,regEqVal)
         ## Get Vision ##
         if (cmdType == "Get Vi"):
             testvis()	
@@ -462,14 +449,14 @@ class move():
             regEntry = "R"+regNum+"EntryField"
             curRegVal = eval(regEntry).get()
             if (curRegVal == regEq):
-            index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
-            tab1.progView.selection_clear(0, END)
-            tab1.progView.select_set(index)  
+                index = tab1.progView.get(0, "end").index("Tab Number " + tabNum)
+                tab1.progView.selection_clear(0, END)
+                tab1.progView.select_set(index)  
         ##Calibrate Command##   
         if (cmdType == "Calibr"):
             calRobotAll()
             if (calStat == 0):
-            stopProg()
+                stopProg()
         ##Move J Command##  
         if (cmdType == "Move J"):  
             J1newIndex = command.find("X) ")
@@ -686,7 +673,7 @@ class move():
             ser.flushInput()
             time.sleep(.01)
             for i in range(numWayPts+1):
-            curWayDis = (1 / numWayPts) * i
+                curWayDis = (1 / numWayPts) * i
             lCX = Xstart + (Xv * curWayDis)
             lCY = Ystart + (Yv * curWayDis)
             lCZ = Zstart + (Zv * curWayDis)
@@ -714,7 +701,7 @@ class move():
             if (Pcode == "01"):
                 applyRobotCal(RobotCode) 
             blockEncPosCal = 0
-            getRobotPosition()    
+            move.getRobotPosition()    
             
             
             
@@ -722,8 +709,8 @@ class move():
         if (cmdType == "Move A"):
             subCmd=command[:10]
             if (subCmd == "Move A Mid" or subCmd == "Move A End"):
-            almStatusLab.config(text="Move A must start with a Beg followed by Mid & End", bg = "red")
-            almStatusLab2.config(text="Move A must start with a Beg followed by Mid & End", bg = "red")
+                almStatusLab.config(text="Move A must start with a Beg followed by Mid & End", bg = "red")
+                almStatusLab2.config(text="Move A must start with a Beg followed by Mid & End", bg = "red")
             J1newIndex = command.find("X) ")
             J2newIndex = command.find("Y) ")
             J3newIndex = command.find("Z) ")
@@ -761,10 +748,10 @@ class move():
             selRow = tab1.progView.curselection()[0]
             last = tab1.progView.index('end')
             for row in range (0,selRow):
-            tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
+                tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
             tab1.progView.itemconfig(selRow, {'fg': 'blue2'})
             for row in range (selRow+1,last):
-            tab1.progView.itemconfig(row, {'fg': 'black'})
+                tab1.progView.itemconfig(row, {'fg': 'black'})
             tab1.progView.selection_clear(0, END)
             selRow += 1
             tab1.progView.select_set(selRow)
@@ -784,10 +771,10 @@ class move():
             selRow = tab1.progView.curselection()[0]
             last = tab1.progView.index('end')
             for row in range (0,selRow):
-            tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
+                tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
             tab1.progView.itemconfig(selRow, {'fg': 'blue2'})
             for row in range (selRow+1,last):
-            tab1.progView.itemconfig(row, {'fg': 'black'})
+                tab1.progView.itemconfig(row, {'fg': 'black'})
             tab1.progView.selection_clear(0, END)
             selRow += 1
             tab1.progView.select_set(selRow)
@@ -868,7 +855,7 @@ class move():
             cur_deg = theta_Deg
             ###START LOOP	
             for i in range(numWayPts+1):
-            theta = math.radians(cur_deg) 
+                theta = math.radians(cur_deg) 
             new_pt = np.dot(kinematics.rotation_matrix(axis, theta), v)
             lCX = round(new_pt[0] + Px,2)
             lCY = round(new_pt[1] + Py,2)
@@ -906,8 +893,8 @@ class move():
             blockEncPosCal = 1
             subCmd=command[:10]
             if (subCmd == "Move C Sta" or subCmd == "Move C Pla"):
-            almStatusLab.config(text="Move C must start with a Center followed by Start & Plane", bg = "red")
-            almStatusLab2.config(text="Move C must start with a Center followed by Start & Plane", bg = "red")
+                almStatusLab.config(text="Move C must start with a Center followed by Start & Plane", bg = "red")
+                almStatusLab2.config(text="Move C must start with a Center followed by Start & Plane", bg = "red")
             J1newIndex = command.find("X) ")
             J2newIndex = command.find("Y) ")
             J3newIndex = command.find("Z) ")
@@ -945,10 +932,10 @@ class move():
             selRow = tab1.progView.curselection()[0]
             last = tab1.progView.index('end')
             for row in range (0,selRow):
-            tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
+                tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
             tab1.progView.itemconfig(selRow, {'fg': 'blue2'})
             for row in range (selRow+1,last):
-            tab1.progView.itemconfig(row, {'fg': 'black'})
+                tab1.progView.itemconfig(row, {'fg': 'black'})
             tab1.progView.selection_clear(0, END)
             selRow += 1
             tab1.progView.select_set(selRow)
@@ -968,10 +955,10 @@ class move():
             selRow = tab1.progView.curselection()[0]
             last = tab1.progView.index('end')
             for row in range (0,selRow):
-            tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
+                tab1.progView.itemconfig(row, {'fg': 'dodger blue'})
             tab1.progView.itemconfig(selRow, {'fg': 'blue2'})
             for row in range (selRow+1,last):
-            tab1.progView.itemconfig(row, {'fg': 'black'})
+                tab1.progView.itemconfig(row, {'fg': 'black'})
             tab1.progView.selection_clear(0, END)
             selRow += 1
             tab1.progView.select_set(selRow)
@@ -1035,7 +1022,7 @@ class move():
             ###START LOOP
             i = 0	
             for i in range(numWayPts+1):
-            theta = math.radians(cur_deg) 
+                theta = math.radians(cur_deg) 
             new_pt = np.dot(kinematics.rotation_matrix(axis, theta), v)
             lCX = round(new_pt[0] + CXbeg,2)
             lCY = round(new_pt[1] + CYbeg,2)
@@ -1046,11 +1033,11 @@ class move():
             if i < ACCpts:
                 tempSpeed = str(round(((i * (ACCpctInc/100))*int(newSpeed)),2))
                 if float(tempSpeed) < minACC:
-                tempSpeed = str(round(minACC,2))
+                    tempSpeed = str(round(minACC,2))
             elif i > DECpts:
                 tempSpeed = str(round((((numWayPts - i) * (DECpctInc/100))*int(newSpeed)),2))
                 if float(tempSpeed) < minDEC:
-                tempSpeed = str(round(minDEC,2))
+                    tempSpeed = str(round(minDEC,2))
             else:
                 tempSpeed = newSpeed
                 
@@ -1076,13 +1063,13 @@ class move():
   def ServoCom(servo):
     savePosData() 
     servoPos = servo
-        if servo == 0:
+    if servo == 0:
             command = "SV0P"+servoPos+"\n"
-        elif servo == 1:
+    elif servo == 1:
             command = "SV1P"+servoPos+"\n"
-        elif servo == 2:
+    elif servo == 2:
             command = "SV2P"+servoPos+"\n"
-        elif servo == 3:
+    elif servo == 3:
             command = "SV3P"+servoPos+"\n"
             
     ser2.write(command.encode())
@@ -1107,7 +1094,7 @@ def DO_off(output):
   ser2.flushInput()
   time.sleep(.2)
   ser2.read() 
- 
+
 
 
 

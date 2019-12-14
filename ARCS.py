@@ -57,6 +57,12 @@ import webbrowser
 import numpy as np
 import datetime
 
+import calibration
+import move
+import kinematics
+import xbox
+import communications
+
 
 
 
@@ -2220,21 +2226,22 @@ def CalcLinWayPt(CX,CY,CZ,curWayPt,):
 ### OPEN CAL FILE AND LOAD LIST ##############################################################################################################################
 ##############################################################################################################################################################
 
-def openCal():
+def openCalFile(filepath):
+
   config = configparser.ConfigParser()
-config.read('db.ini')
+  config.read(filepath)
 
   try:
-    with open('test.ini') as f:
-        config.read(f)
+        with open('config.ini') as f:
+           config.read(f)
   except IOError:
-    config.add_section('General')
-    config.add_section('DH parameters')
-    config.add_section('Limits')
-    config.add_section('Track')
-    config.add_section('Visual')
-    with open('config.cfg', 'w') as configfile:
-    config.write(configfile)
+        config.add_section('General')
+        config.add_section('DH parameters')
+        config.add_section('Limits')
+        config.add_section('Track')
+        config.add_section('Visual')
+        with open('config.ini', 'w') as configfile:
+          config.write(configfile)
  
   J1StepCur   =config['']['']
   J1AngCur    =config['']['']

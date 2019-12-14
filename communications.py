@@ -1,4 +1,4 @@
-class communications():
+class communications:
 
     def setCom(): 
         try:
@@ -55,3 +55,12 @@ class communications():
             value=tab6.ElogView.get(0,END)
             pickle.dump(value,open("ErrorLog","wb"))
             savePosData()
+
+
+    def getRobotPosition():
+        commandCalc = "GP"+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
+        ser.write(commandCalc.encode())
+        RobotCode = str(ser.readline())
+        Pcode = RobotCode[2:4]
+        if (Pcode == "01"):
+            applyRobotCal(RobotCode)

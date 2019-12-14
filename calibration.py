@@ -1,15 +1,5 @@
 class calibration():
 
-
-
-    def getRobotPosition():
-        commandCalc = "GP"+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
-        ser.write(commandCalc.encode())
-        RobotCode = str(ser.readline())
-        Pcode = RobotCode[2:4]
-        if (Pcode == "01"):
-            applyRobotCal(RobotCode)
-
     def applyRobotCal(RobotCode):
         global J1NegAngLim
         global J1PosAngLim
@@ -62,64 +52,64 @@ class calibration():
         J6index = RobotCode.find('F')
         if (J1OpenLoopStat.get() == 0):
             if (J1fault == "1"):
-            almStatusLab.config(text="J1 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J1 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J1 COLLISION OR OUT OF CALIBRATION")
-            J1StepCur = int(RobotCode[J1index+1:J2index])
-            J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
-            J1curAngEntryField.delete(0, 'end')
-            J1curAngEntryField.insert(0,str(J1AngCur))
-            stopProg()
+                almStatusLab.config(text="J1 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J1 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J1 COLLISION OR OUT OF CALIBRATION")
+                J1StepCur = int(RobotCode[J1index+1:J2index])
+                J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
+                J1curAngEntryField.delete(0, 'end')
+                J1curAngEntryField.insert(0,str(J1AngCur))
+                stopProg()
         if (J2OpenLoopStat.get() == 0):    
             if (J2fault == "1"):
-            almStatusLab.config(text="J2 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J2 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J2 COLLISION OR OUT OF CALIBRATION")
-            J2StepCur = int(RobotCode[J2index+1:J3index])
-            J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
-            J2curAngEntryField.delete(0, 'end')
-            J2curAngEntryField.insert(0,str(J2AngCur))
-            stopProg()
+                almStatusLab.config(text="J2 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J2 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J2 COLLISION OR OUT OF CALIBRATION")
+                J2StepCur = int(RobotCode[J2index+1:J3index])
+                J2AngCur = round(J2NegAngLim + (J2StepCur * J2DegPerStep),2)
+                J2curAngEntryField.delete(0, 'end')
+                J2curAngEntryField.insert(0,str(J2AngCur))
+                stopProg()
         if (J3OpenLoopStat.get() == 0):    
             if (J3fault == "1"):
-            almStatusLab.config(text="J3 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J3 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J3 COLLISION OR OUT OF CALIBRATION")
-            J3StepCur = int(RobotCode[J3index+1:J4index])
-            J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
-            J3curAngEntryField.delete(0, 'end')
-            J3curAngEntryField.insert(0,str(J3AngCur))
-            stopProg()
+                almStatusLab.config(text="J3 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J3 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J3 COLLISION OR OUT OF CALIBRATION")
+                J3StepCur = int(RobotCode[J3index+1:J4index])
+                J3AngCur = round(J3NegAngLim + (J3StepCur * J3DegPerStep),2)
+                J3curAngEntryField.delete(0, 'end')
+                J3curAngEntryField.insert(0,str(J3AngCur))
+                stopProg()
         if (J4OpenLoopStat.get() == 0):    
             if (J4fault == "1"):
-            almStatusLab.config(text="J4 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J4 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J4 COLLISION OR OUT OF CALIBRATION")
-            J4StepCur = int(RobotCode[J4index+1:J5index])
-            J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
-            J4curAngEntryField.delete(0, 'end')
-            J4curAngEntryField.insert(0,str(J4AngCur))
-            stopProg()
+                almStatusLab.config(text="J4 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J4 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J4 COLLISION OR OUT OF CALIBRATION")
+                J4StepCur = int(RobotCode[J4index+1:J5index])
+                J4AngCur = round(J4NegAngLim + (J4StepCur * J4DegPerStep),2)
+                J4curAngEntryField.delete(0, 'end')
+                J4curAngEntryField.insert(0,str(J4AngCur))
+                stopProg()
         if (J5OpenLoopStat.get() == 0):    
             if (J5fault == "1"):
-            almStatusLab.config(text="J5 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J5 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J5 COLLISION OR OUT OF CALIBRATION")
-            J5StepCur = int(RobotCode[J5index+1:J6index])
-            J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
-            J5curAngEntryField.delete(0, 'end')
-            J5curAngEntryField.insert(0,str(J5AngCur))
-            stopProg()      
+                almStatusLab.config(text="J5 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J5 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J5 COLLISION OR OUT OF CALIBRATION")
+                J5StepCur = int(RobotCode[J5index+1:J6index])
+                J5AngCur = round(J5NegAngLim + (J5StepCur * J5DegPerStep),2)
+                J5curAngEntryField.delete(0, 'end')
+                J5curAngEntryField.insert(0,str(J5AngCur))
+                stopProg()      
         if (J6OpenLoopStat.get() == 0):    
             if (J6fault == "1"):
-            almStatusLab.config(text="J6 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            almStatusLab2.config(text="J6 COLLISION OR OUT OF CALIBRATION", bg = "red")
-            tab6.ElogView.insert(END, Curtime+" - "+"J6 COLLISION OR OUT OF CALIBRATION")
-            J6StepCur = int(RobotCode[J6index+1:-5])
-            J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
-            J6curAngEntryField.delete(0, 'end')
-            J6curAngEntryField.insert(0,str(J6AngCur))
-            stopProg()
+                almStatusLab.config(text="J6 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                almStatusLab2.config(text="J6 COLLISION OR OUT OF CALIBRATION", bg = "red")
+                tab6.ElogView.insert(END, Curtime+" - "+"J6 COLLISION OR OUT OF CALIBRATION")
+                J6StepCur = int(RobotCode[J6index+1:-5])
+                J6AngCur = round(J6NegAngLim + (J6StepCur * J6DegPerStep),2)
+                J6curAngEntryField.delete(0, 'end')
+                J6curAngEntryField.insert(0,str(J6AngCur))
+                stopProg()
         CalcFwdKin()
         DisplaySteps()
         savePosData()
@@ -366,79 +356,79 @@ class calibration():
             global J1StepCur
             global J1AngCur
             if (J1axis == "1"):
-            if (J1caldir == "0"):
-                J1StepCur = 0
-                J1AngCur = J1NegAngLim
-            else:
-                J1StepCur = J1StepLim
-                J1AngCur = J1PosAngLim
-            J1curAngEntryField.delete(0, 'end')
-            J1curAngEntryField.insert(0,str(J1AngCur))
+                if (J1caldir == "0"):
+                    J1StepCur = 0
+                    J1AngCur = J1NegAngLim
+                else:
+                    J1StepCur = J1StepLim
+                    J1AngCur = J1PosAngLim
+                J1curAngEntryField.delete(0, 'end')
+                J1curAngEntryField.insert(0,str(J1AngCur))
             ###########
             ##J2##
             global J2StepCur
             global J2AngCur
             if (J2axis == "1"):
-            if (J2caldir == "0"):
-                J2StepCur = 0
-                J2AngCur = J2NegAngLim
-            else:
-                J2StepCur = J2StepLim
-                J2AngCur = J2PosAngLim
-            J2curAngEntryField.delete(0, 'end')
-            J2curAngEntryField.insert(0,str(J2AngCur))
+                if (J2caldir == "0"):
+                    J2StepCur = 0
+                    J2AngCur = J2NegAngLim
+                else:
+                    J2StepCur = J2StepLim
+                    J2AngCur = J2PosAngLim
+                J2curAngEntryField.delete(0, 'end')
+                J2curAngEntryField.insert(0,str(J2AngCur))
             ###########
             ##J3##
             global J3StepCur
             global J3AngCur
             if (J3axis == "1"):
-            if (J3caldir == "0"):
-                J3StepCur = 0
-                J3AngCur = J3NegAngLim
-            else:
-                J3StepCur = J3StepLim
-                J3AngCur = J3PosAngLim
-            J3curAngEntryField.delete(0, 'end')
-            J3curAngEntryField.insert(0,str(J3AngCur))
+                if (J3caldir == "0"):
+                    J3StepCur = 0
+                    J3AngCur = J3NegAngLim
+                else:
+                    J3StepCur = J3StepLim
+                    J3AngCur = J3PosAngLim
+                J3curAngEntryField.delete(0, 'end')
+                J3curAngEntryField.insert(0,str(J3AngCur))
             ###########
             ##J4##
             global J4StepCur
             global J4AngCur
             if (J4axis == "1"):
-            if (J4caldir == "0"):
-                J4StepCur = 0
-                J4AngCur = J4NegAngLim
-            else:
-                J4StepCur = J4StepLim
-                J4AngCur = J4PosAngLim
-            J4curAngEntryField.delete(0, 'end')
-            J4curAngEntryField.insert(0,str(J4AngCur))
+                if (J4caldir == "0"):
+                    J4StepCur = 0
+                    J4AngCur = J4NegAngLim
+                else:
+                    J4StepCur = J4StepLim
+                    J4AngCur = J4PosAngLim
+                J4curAngEntryField.delete(0, 'end')
+                J4curAngEntryField.insert(0,str(J4AngCur))
             ###########	
             ##J5##
             global J5StepCur
             global J5AngCur
             if (J5axis == "1"):
-            if (J5caldir == "0"):
-                J5StepCur = 0
-                J5AngCur = J5NegAngLim
-            else:
-                J5StepCur = J5StepLim
-                J5AngCur = J5PosAngLim
-            J5curAngEntryField.delete(0, 'end')
-            J5curAngEntryField.insert(0,str(J5AngCur))
+                if (J5caldir == "0"):
+                    J5StepCur = 0
+                    J5AngCur = J5NegAngLim
+                else:
+                    J5StepCur = J5StepLim
+                    J5AngCur = J5PosAngLim
+                J5curAngEntryField.delete(0, 'end')
+                J5curAngEntryField.insert(0,str(J5AngCur))
             ###########	
             ##J6##
             global J6StepCur
             global J6AngCur
             if (J6axis == "1"):
-            if (J6caldir == "0"):
-                J6StepCur = 0
-                J6AngCur = J6NegAngLim
-            else:
-                J6StepCur = J6StepLim
-                J6AngCur = J6PosAngLim
-            J6curAngEntryField.delete(0, 'end')
-            J6curAngEntryField.insert(0,str(J6AngCur))
+                if (J6caldir == "0"):
+                    J6StepCur = 0
+                    J6AngCur = J6NegAngLim
+                else:
+                    J6StepCur = J6StepLim
+                    J6AngCur = J6PosAngLim
+                J6curAngEntryField.delete(0, 'end')
+                J6curAngEntryField.insert(0,str(J6AngCur))
             ###########		
             value=calibration.get(0,END)
             pickle.dump(value,open("ARbot.cal","wb"))
@@ -447,12 +437,12 @@ class calibration():
             DisplaySteps()
         else:
             if (calvalue == b'F'):
-            calStat = 0
-            almStatusLab.config(text="CALIBRATION FAILED", bg = "red")
-            almStatusLab2.config(text="CALIBRATION FAILED", bg = "red")
+                calStat = 0
+                almStatusLab.config(text="CALIBRATION FAILED", bg = "red")
+                almStatusLab2.config(text="CALIBRATION FAILED", bg = "red")
             else:
-            almStatusLab.config(text="NO CAL FEEDBACK FROM ARDUINO", bg = "red")
-            almStatusLab2.config(text="NO CAL FEEDBACK FROM ARDUINO", bg = "red")	  
+                almStatusLab.config(text="NO CAL FEEDBACK FROM ARDUINO", bg = "red")
+                almStatusLab2.config(text="NO CAL FEEDBACK FROM ARDUINO", bg = "red")	  
         CalcFwdKin()	  
         savePosData()
         command = "LM"+"A"+str(J1StepCur)+"B"+str(J2StepCur)+"C"+str(J3StepCur)+"D"+str(J4StepCur)+"E"+str(J5StepCur)+"F"+str(J6StepCur)+"\n"  
@@ -855,7 +845,7 @@ class calibration():
         savePosData()
         
 
-     def gotoFineCalPos():
+    def gotoFineCalPos():
         command = fineCalEntryField.get() 
         J1newIndex = command.find("X) ")
         J2newIndex = command.find("Y) ")
@@ -895,7 +885,7 @@ class calibration():
         almStatusLab2.config(text="MOVED TO FINE CALIBRATION POSITION", bg = "yellow")
         
         
-     def gotoRestPos():
+    def gotoRestPos():
         command = "Move J [*]  X) 68.944   Y) 0.0   Z) 733.607   W) -90.0   P) 1.05   R) -90.0   T) 201.5   Speed-50 Ad 15 As 10 Dd 20 Ds 5 $F" 
         J1newIndex = command.find("X) ")
         J2newIndex = command.find("Y) ")
@@ -933,7 +923,7 @@ class calibration():
         MoveXYZ(CX,CY,CZ,CRx,CRy,CRz,newSpeed,ACCdur,ACCspd,DECdur,DECspd,WC,TCX,TCY,TCZ,TCRx,TCRy,TCRz,Track,Code)
 
         
-     def exeFineCalPos():
+    def exeFineCalPos():
         global J1StepCur
         global J2StepCur
         global J3StepCur
@@ -984,7 +974,7 @@ class calibration():
         ser.write(command.encode())
         ser.flushInput()
 
-     def CalTrackPos():
+    def CalTrackPos():
         global TrackcurPos  
         TrackcurPos = 0 
         TrackcurEntryField.delete(0, 'end')  
@@ -992,10 +982,10 @@ class calibration():
         savePosData()   
         
         
-     def monitorEnc():
+    def monitorEncoders():
         global blockEncPosMove
         global blockEncPosCal
         while True:
             if blockEncPosMove == 0 and blockEncPosCal == 0:
-            getRobotPosition()
-            time.sleep(2)  
+                getRobotPosition()
+                time.sleep(0.2)  
