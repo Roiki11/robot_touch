@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.10.2, 2019-12-05T03:54:55. -->
+<!-- Written by QtCreator 4.10.2, 2019-12-09T05:29:53. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -143,7 +143,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run /home/joonas/Desktop/Robot_touch/main.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./home/joonas/Desktop/Robot_touch/main.py</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">/usr/bin/python</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">/usr/bin/python3.7</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">/home/joonas/Desktop/Robot_touch/main.py</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>

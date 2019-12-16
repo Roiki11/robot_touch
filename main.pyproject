@@ -1,4 +1,4 @@
 {
- "files": ["main.py","mainwindow.ui"]
+ "files": ["main.py","mainwindow.ui","style.qss"]
 }
     
