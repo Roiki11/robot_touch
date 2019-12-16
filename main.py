@@ -1,30 +1,34 @@
 #!/usr/bin/python3
 
 import sys
-import os
-import PyQt5.QtWidgets
+import os, traceback
+import time
+from PyQt5 import uic, QtGui
+from PyQt5.QtCore import *
+from PyQt5 import QtWidgets as qt
 
-class Ui(PyQt5.QtWidgets.QMainWindow):
+class Worker(QRunnable):
+
+    @pyqtSlot
+    def run(self):
+
+
+
+class Ui(qt.QMainWindow):
     def __init__(self):
         # Call the inherited classes __init__ method
         super(Ui, self).__init__()
-        uic.loadUi('mainwindow.ui',self)  # Load the .ui file
+        uic.loadUi(os.getcwd'mainwindow.ui', self)  # Load the .ui file
+        self.threadpool = QThreadPool
 
        
-        self.load_file.clicked.connect(self.openFile)
-        self.save_file.clicked.connect(self.saveFile)
-        #self.run_program.clicked.connect()
-        #self.stop_program.clicked.connect()
+        self.Load_file.clicked.connect(self.openFileDialog)
 
         self.show()  # Show the GUI
 
-    def openFile(self):
-         filename = qt.QFileDialog.getOpenFileName(self, "Open File")
-
-         #file = open(filename, 'r')
-         #with file as f:
-             #line=f.read().splitlines()
-             #self.programView.addItem(line)
+    def openFileDialog(self):
+         fname = qt.QFileDialog.getOpenFileName(self, 'Open file', '/home')
+         file = open(fname, 'r')
 
 
     
