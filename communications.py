@@ -12,20 +12,14 @@ class communications:
             port = "COM" + comPortEntryField.get()  
             baud = 115200    
             ser = serial.Serial(port,baud)
-            almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-            almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - COMMUNICATIONS STARTED WITH TEENSY 3.5")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
+            
             savePosData()
         except:
-            almStatusLab.config(text="UNABLE TO ESTABLISH COMMUNICATIONS WITH TEENSY 3.5", bg = "yellow")
-            almStatusLab2.config(text="UNABLE TO ESTABLISH COMMUNICATIONS WITH TEENSY 3.5", bg = "yellow")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - UNABLE TO ESTABLISH COMMUNICATIONS WITH TEENSY 3.5")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
+            
             savePosData()
 
     def setCom2(): 
@@ -64,3 +58,11 @@ class communications:
         Pcode = RobotCode[2:4]
         if (Pcode == "01"):
             applyRobotCal(RobotCode)
+
+    def monitorEncoders():
+        global blockEncPosMove
+        global blockEncPosCal
+        while True:
+            if blockEncPosMove == 0 and blockEncPosCal == 0:
+                getRobotPosition()
+                time.sleep(0.2)  

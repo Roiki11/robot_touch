@@ -278,7 +278,7 @@ def ChgSpd(val):
   speedEntryField.delete(0, 'end')    
   speedEntryField.insert(0,str(curSpd))  
  
-def J1jogNeg():
+def jogNeg(joint):
   global JogStepsStat
   global J1StepCur
   global J2StepCur
@@ -286,7 +286,58 @@ def J1jogNeg():
   global J4StepCur
   global J5StepCur
   global J6StepCur
-  global J1AngCur
+
+  if joint ==J1:
+    
+    NegAngLim = J1NegAngLim
+    AngCur = J1AngCur
+    motdir = J1motdir
+    stepCur = J1StepCur
+    DegsPerStep = J1DegPerStep
+
+  elif joint = J2:
+    
+    NegAngLim = J1NegAngLim
+    AngCur = J2AngCur
+    motdir = J2motdir
+    stepCur = J2StepCur
+    DegsPerStep = J2DegPerStep
+
+  elif joint = J3:
+    
+    NegAngLim = J2NegAngLim
+    AngCur = J2AngCur
+    motdir = J2motdir
+    stepCur = J2StepCur
+    DegsPerStep = J2DegPerStep
+
+  elif joint = J4:
+    
+    NegAngLim = J3NegAngLim
+    AngCur = J3AngCur
+    motdir = J3motdir
+    stepCur = J3StepCur
+    DegsPerStep = J3DegPerStep
+
+  elif joint = J5:
+    
+    NegAngLim = J1NegAngLim
+    AngCur = J5AngCur
+    motdir = J5motdir
+    stepCur = J5StepCur
+    DegsPerStep = J5DegPerStep
+
+  elif joint = J6:
+    
+    NegAngLim = J1NegAngLim
+    AngCur = J6AngCur
+    motdir = J6motdir
+    stepCur = J6StepCur
+    DegsPerStep = J6DegPerStep
+    
+
+
+
   global xboxUse
   if xboxUse != 1:
     almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
@@ -296,21 +347,33 @@ def J1jogNeg():
   ACCspd = ACCspeedField.get()
   DECdur = DECdurField.get()
   DECspd = DECspeedField.get()
-  J1Degs = float(J1jogDegsEntryField.get())
+  Degs = float(J1jogDegsEntryField.get())
   if JogStepsStat.get() == 0:
-    J1jogSteps = int(J1Degs/J1DegPerStep)
+    jogSteps = int(Degs/DegPerStep)
   else:
     #switch from degs to steps
-    J1jogSteps = J1Degs
-    J1Degs = J1Degs*J1DegPerStep
-  if (J1Degs <= -(J1NegAngLim - J1AngCur)):   
-    J1StepCur = J1StepCur - int(J1jogSteps)
-    J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
-    J1curAngEntryField.delete(0, 'end')
-    J1curAngEntryField.insert(0,str(J1AngCur))
+    jogSteps = Degs
+    Degs = Degs*DegPerStep
+  if (Degs <= -(NegAngLim - AngCur)):   
+    StepCur = StepCur - int(jogSteps)
+    AngCur = round(NegAngLim + (StepCur * DegPerStep),2)
+
+    if joint==J1:
+      global J1AngCur=AngCur
+    elif joint=J2:
+      global J2AngCur=AngCur
+    elif joint==J3:
+      global J3AngCur=AngCur
+    elif joint==J4:
+      global J4AngCur=AngCur
+    elif joint==J5:
+      global J5AngCur=AngCur
+    elif joint==J6:
+      global J6AngCur=AngCur
+    
     savePosData()
     CalcFwdKin()
-    command = "MJA"+J1motdir+str(J1jogSteps)+"S"+Speed+"G"+ACCdur+"H"+ACCspd+"I"+DECdur+"K"+DECspd+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
+    command = "MJA"+motdir+str(jogSteps)+"S"+Speed+"G"+ACCdur+"H"+ACCspd+"I"+DECdur+"K"+DECspd+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
     ser.write(command.encode())    
     ser.flushInput()
     time.sleep(.2)
@@ -320,12 +383,9 @@ def J1jogNeg():
     if (Pcode == "01"):
       applyRobotCal(RobotCode)         
   else:
-    almStatusLab.config(text="J1 AXIS LIMIT", bg = "red")
-    almStatusLab2.config(text="J1 AXIS LIMIT", bg = "red")
+    
     Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-    tab6.ElogView.insert(END, Curtime+" - "+"J1 AXIS LIMIT")
-    value=tab6.ElogView.get(0,END)
-    pickle.dump(value,open("ErrorLog","wb"))
+    
   DisplaySteps()
     
 
@@ -340,8 +400,7 @@ def J1jogPos():
   global J1AngCur
   global xboxUse
   if xboxUse != 1:
-    almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-    almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
+    pass
   Speed = speedEntryField.get()
   ACCdur = ACCdurField.get()
   ACCspd = ACCspeedField.get()

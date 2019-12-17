@@ -42,53 +42,29 @@ class move:
             #almStatusLab2.config(text="AXIS LIMIT", bg = "red")
             #tab1.runTrue = 0
         if (J1newAng < J1NegAngLim or J1newAng > J1PosAngLim): 
-            almStatusLab.config(text="J1 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J1 AXIS LIMIT", bg = "red")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J1 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0
+            
         elif (J2newAng < J2NegAngLim or J2newAng > J2PosAngLim): 
-            almStatusLab.config(text="J2 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J2 AXIS LIMIT", bg = "red")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J2 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0
+            
         elif (J3newAng < J3NegAngLim or J3newAng > J3PosAngLim): 
-            almStatusLab.config(text="J3 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J3 AXIS LIMIT", bg = "red")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J3 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0
+            
         elif (J4newAng < J4NegAngLim or J4newAng > J4PosAngLim): 
-            almStatusLab.config(text="J4 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J4 AXIS LIMIT", bg = "red")
+           
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J4 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0
+            
         elif (J5newAng < J5NegAngLim or J5newAng > J5PosAngLim): 
-            almStatusLab.config(text="J5 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J5 AXIS LIMIT", bg = "red")
+           
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J5 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0
+            
         elif (J6newAng < J6NegAngLim or J6newAng > J6PosAngLim): 
-            almStatusLab.config(text="J6 AXIS LIMIT", bg = "red")
-            almStatusLab2.config(text="J6 AXIS LIMIT", bg = "red")
+            
             Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
-            tab6.ElogView.insert(END, Curtime+" - "+"J6 AXIS LIMIT")
-            value=tab6.ElogView.get(0,END)
-            pickle.dump(value,open("ErrorLog","wb"))
-            tab1.runTrue = 0    
+            
         else:  
             ##J1 calc##
             if (float(J1newAng) >= float(J1AngCur)):   
@@ -1060,42 +1036,152 @@ class move:
             
             rowinproc = 0  	 
 
-  def ServoCom(servo):
-    savePosData() 
-    servoPos = servo
-    if servo == 0:
-            command = "SV0P"+servoPos+"\n"
-    elif servo == 1:
-            command = "SV1P"+servoPos+"\n"
-    elif servo == 2:
-            command = "SV2P"+servoPos+"\n"
-    elif servo == 3:
-            command = "SV3P"+servoPos+"\n"
+    def ServoCom(servo):
+        savePosData() 
+        servoPos = servo
+        if servo == 0:
+                command = "SV0P"+servoPos+"\n"
+        elif servo == 1:
+                command = "SV1P"+servoPos+"\n"
+        elif servo == 2:
+                command = "SV2P"+servoPos+"\n"
+        elif servo == 3:
+                command = "SV3P"+servoPos+"\n"
+                
+        ser2.write(command.encode())
+        ser2.flushInput()
+        time.sleep(.2)
+        ser2.read()
+
+
+    def DO_on(output):
+        outputNum = output
+        command = "ONX"+outputNum+"\n"
+        ser2.write(command.encode())
+        ser2.flushInput()
+        time.sleep(.2)
+        ser2.read() 
+
+
+    def DO_off(output):
+        outputNum = output
+        command = "OFX"+outputNum+"\n"
+        ser2.write(command.encode())
+        ser2.flushInput()
+        time.sleep(.2)
+        ser2.read() 
+
+    def jogNeg(joint):
+        global JogStepsStat
+        global J1StepCur
+        global J2StepCur
+        global J3StepCur
+        global J4StepCur
+        global J5StepCur
+        global J6StepCur
+
+        if joint = J1:
             
-    ser2.write(command.encode())
-    ser2.flushInput()
-    time.sleep(.2)
-    ser2.read()
+            NegAngLim = J1NegAngLim
+            AngCur = global J1AngCur
+            motdir = J1motdir
+            stepCur = J1StepCur
+            DegsPerStep = J1DegPerStep
+
+        elif joint = J2:
+            
+            NegAngLim = J1NegAngLim
+            AngCur = global J2AngCur
+            motdir = J2motdir
+            stepCur = J2StepCur
+            DegsPerStep = J2DegPerStep
+
+        elif joint = J3:
+            
+            NegAngLim = J2NegAngLim
+            AngCur = global J2AngCur
+            motdir = J2motdir
+            stepCur = J2StepCur
+            DegsPerStep = J2DegPerStep
+
+        elif joint = J4:
+            
+            NegAngLim = J3NegAngLim
+            AngCur = global J3AngCur
+            motdir = J3motdir
+            stepCur = J3StepCur
+            DegsPerStep = J3DegPerStep
+
+        elif joint = J5:
+            
+            NegAngLim = J1NegAngLim
+            AngCur = global J5AngCur
+            motdir = J5motdir
+            stepCur = J5StepCur
+            DegsPerStep = J5DegPerStep
+
+        elif joint = J6:
+            
+            NegAngLim = J1NegAngLim
+            AngCur = global J6AngCur
+            motdir = J6motdir
+            stepCur = J6StepCur
+            DegsPerStep = J6DegPerStep
+            
 
 
-def DO_on(output):
-  outputNum = output
-  command = "ONX"+outputNum+"\n"
-  ser2.write(command.encode())
-  ser2.flushInput()
-  time.sleep(.2)
-  ser2.read() 
+
+        global xboxUse
+        if xboxUse != 1:
+            almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
+            almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
+        Speed = speedEntryField.get()
+        ACCdur = ACCdurField.get()
+        ACCspd = ACCspeedField.get()
+        DECdur = DECdurField.get()
+        DECspd = DECspeedField.get()
+        Degs = float(J1jogDegsEntryField.get())
+
+        if JogStepsStat.get() == 0:
+            jogSteps = int(Degs/DegPerStep)
+        else:
+            #switch from degs to steps
+            jogSteps = Degs
+            Degs = Degs*DegPerStep
+        if (Degs <= -(NegAngLim - AngCur)):   
+            StepCur = StepCur - int(jogSteps)
+            AngCur = round(NegAngLim + (StepCur * DegPerStep),2)
+
+            if joint==J1:
+            global J1AngCur=AngCur
+            elif joint=J2:
+            global J2AngCur=AngCur
+            elif joint==J3:
+            global J3AngCur=AngCur
+            elif joint==J4:
+            global J4AngCur=AngCur
+            elif joint==J5:
+            global J5AngCur=AngCur
+            elif joint==J6:
+            global J6AngCur=AngCur
+            
+            savePosData()
+            CalcFwdKin()
+            command = "MJA"+motdir+str(jogSteps)+"S"+Speed+"G"+ACCdur+"H"+ACCspd+"I"+DECdur+"K"+DECspd+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
+            ser.write(command.encode())    
+            ser.flushInput()
+            time.sleep(.2)
+            #ser.read()
+            RobotCode = str(ser.readline())
+            Pcode = RobotCode[2:4]
+            if (Pcode == "01"):
+                applyRobotCal(RobotCode)         
+            else:
+    
+                Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
+    
+        DisplaySteps()
 
 
-def DO_off(output):
-  outputNum = output
-  command = "OFX"+outputNum+"\n"
-  ser2.write(command.encode())
-  ser2.flushInput()
-  time.sleep(.2)
-  ser2.read() 
 
-
-
-
-  
+    

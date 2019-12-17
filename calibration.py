@@ -982,10 +982,4 @@ class calibration():
         savePosData()   
         
         
-    def monitorEncoders():
-        global blockEncPosMove
-        global blockEncPosCal
-        while True:
-            if blockEncPosMove == 0 and blockEncPosCal == 0:
-                getRobotPosition()
-                time.sleep(0.2)  
+    
