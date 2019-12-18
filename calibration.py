@@ -1,6 +1,6 @@
-class calibration():
+class calibration:
 
-    def applyRobotCal(RobotCode):
+    def applyRobotCal(self, RobotCode):
         global J1NegAngLim
         global J1PosAngLim
         global J1StepLim

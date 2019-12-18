@@ -1038,7 +1038,7 @@ class move:
 
     def ServoCom(servo):
         savePosData() 
-        servoPos = servo
+        servoPos = 
         if servo == 0:
                 command = "SV0P"+servoPos+"\n"
         elif servo == 1:

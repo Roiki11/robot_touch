@@ -12,6 +12,7 @@ from .move import move
 from .kinematics import kinematics
 from .communications import communications
 from .calibration import calibration
+from .file_handling import file
 
 class Worker(QRunnable):
      def __init__(self, fn, *args, **kwargs):
@@ -33,26 +34,59 @@ class Worker(QRunnable):
 
 class Ui(qt.QMainWindow):
 
-    def openFileDialog(self):
-        fname = qt.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
-        if fname:
-            f = open(fname[0], 'r')
-            for line in f:
-                self.programView.addItem(line)
+    def set_parameter(self, param):
+        if param == alpha1:
+            global DHa1 = self.dh_alpha1.text()
+        elif param == alpha2:
+            global DHa2 = self.dh_alpha2.text()
+        elif param == alpha3:
+            global DHa3 = self.dh_alpha1.text()
+        elif param == alpha4:
+            global DHa4 = self.dh_alpha1.text()
+        elif param == alpha5:
+            global DHa5 = self.dh_alpha1.text()
+        elif param == alpha6:
+            global DHa6 = self.dh_alpha1.text()
+        elif param == a1:
+            global DHr1 = self.dh_a1.text()
+        elif param == a2:
+            global DHr2 = self.dh_a2.text()
+        elif param == a3:
+            global DHr3 = self.dh_a3.text()
+        elif param == a4:
+            global DHr4 = self.dh_a4.text()
+        elif param == a5:
+            global DHr5 = self.dh_a5.text()
+        elif param == a6:
+            global DHr6 = self.dh_a6.text()
+        elif param == d1:
+            global DHd1 = self.dh_d1.text()
+        elif param == d2:
+            global DHd2 = self.dh_d2.text()
+        elif param == d3:
+            global DHd3 = self.dh_d3.text()
+        elif param == d4:
+            global DHd4 = self.dh_d4.text()
+        elif param == d5:
+            global DHd5 = self.dh_d5.text()
+        elif param == d6:
+            global DHd6 = self.dh_d6.text()
+        elif param == theta1:
+            global DHt1 = self.dh_theta1.text()
+        elif param == theta2:
+            global DHt2 = self.dh_theta2.text()
+        elif param == theta3:
+            global DHt3 = self.dh_theta3.text()
+        elif param == theta4:
+            global DHt4 = self.dh_theta4.text()
+        elif param == theta5:
+            global DHt5 = self.dh_theta5.text()
+        elif param == theta6:
+            global DHt6 = self.dh_theta6.text()
 
 
 
-    def saveFile(self):
-        fname = qt.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
-        if fname:
-            file = open(fname[0],'w')
-            items=[]
-            for index in range(self.programView.count()):
-                items.append(self.programView.item(index))
 
-            for item in items:
-                file.write(item.text())
-        file.close()
 
     def __init__(self):
         # Call the inherited classes __init__ method
@@ -61,10 +95,13 @@ class Ui(qt.QMainWindow):
         uic.loadUi(ui_file, self)  # Load the .ui file
         self.threadpool = QThreadPool
 
-        
-        self.load_file.clicked.connect(self.openFileDialog)
-        self.save_file.clicked.connect(self.saveFile)
+        ## File handling buttons ##
+        self.load_file.clicked.connect(file.loadFile)
+        self.save_file.clicked.connect(file.saveFile)
+        self.new_File.clicked.connect(file.newFile)
 
+
+        ##Jogging Buttons##
         #self.jog1pos.clicked.connect(move.)
 
         self.jog1neg.clicked.connect(move.jogNeg(J1))
@@ -73,6 +110,9 @@ class Ui(qt.QMainWindow):
         self.jog4neg.clicked.connect(move.jogNeg(J4))
         self.jog5neg.clicked.connect(move.jogNeg(J5))
         self.jog6neg.clicked.connect(move.jogNeg(J6))
+
+        self.dh_alpha1.textChanged.connect(set_parameter(alpha1))
+        self.dh_alpha1.setValidator(QtGui.QDoubleValidator.StandardNotation())
 
         self.show()  # Show the GUI
 

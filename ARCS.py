@@ -49,11 +49,8 @@
 import configparser
 import serial
 import time
-import threading
 import queue
 import math
-import tkinter.messagebox
-import webbrowser
 import numpy as np
 import datetime
 
@@ -278,7 +275,7 @@ def ChgSpd(val):
   speedEntryField.delete(0, 'end')    
   speedEntryField.insert(0,str(curSpd))  
  
-def jogNeg(joint):
+def jogFunction(joint,direction):
   global JogStepsStat
   global J1StepCur
   global J2StepCur
@@ -287,7 +284,7 @@ def jogNeg(joint):
   global J5StepCur
   global J6StepCur
 
-  if joint ==J1:
+  if joint == J1:
     
     NegAngLim = J1NegAngLim
     AngCur = J1AngCur
@@ -295,7 +292,7 @@ def jogNeg(joint):
     stepCur = J1StepCur
     DegsPerStep = J1DegPerStep
 
-  elif joint = J2:
+  elif joint == J2:
     
     NegAngLim = J1NegAngLim
     AngCur = J2AngCur
@@ -303,7 +300,7 @@ def jogNeg(joint):
     stepCur = J2StepCur
     DegsPerStep = J2DegPerStep
 
-  elif joint = J3:
+  elif joint == J3:
     
     NegAngLim = J2NegAngLim
     AngCur = J2AngCur
@@ -311,7 +308,7 @@ def jogNeg(joint):
     stepCur = J2StepCur
     DegsPerStep = J2DegPerStep
 
-  elif joint = J4:
+  elif joint == J4:
     
     NegAngLim = J3NegAngLim
     AngCur = J3AngCur
@@ -319,7 +316,7 @@ def jogNeg(joint):
     stepCur = J3StepCur
     DegsPerStep = J3DegPerStep
 
-  elif joint = J5:
+  elif joint == J5:
     
     NegAngLim = J1NegAngLim
     AngCur = J5AngCur
@@ -327,7 +324,7 @@ def jogNeg(joint):
     stepCur = J5StepCur
     DegsPerStep = J5DegPerStep
 
-  elif joint = J6:
+  elif joint == J6:
     
     NegAngLim = J1NegAngLim
     AngCur = J6AngCur
@@ -340,36 +337,36 @@ def jogNeg(joint):
 
   global xboxUse
   if xboxUse != 1:
-    almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-    almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
-  Speed = speedEntryField.get()
-  ACCdur = ACCdurField.get()
-  ACCspd = ACCspeedField.get()
-  DECdur = DECdurField.get()
-  DECspd = DECspeedField.get()
-  Degs = float(J1jogDegsEntryField.get())
+    
+  Speed = robot_speed
+  ACCdur = accel_Duration
+  ACCspd = accel_Speed
+  DECdur = decel_Duration
+  DECspd = decel_Speed
+  Degs = float(Ui.jog_incremet_slider.value)
   if JogStepsStat.get() == 0:
     jogSteps = int(Degs/DegPerStep)
   else:
     #switch from degs to steps
     jogSteps = Degs
     Degs = Degs*DegPerStep
-  if (Degs <= -(NegAngLim - AngCur)):   
+  if direction == 0 (Degs <= -(NegAngLim - AngCur)): 
+    
     StepCur = StepCur - int(jogSteps)
     AngCur = round(NegAngLim + (StepCur * DegPerStep),2)
 
     if joint==J1:
-      global J1AngCur=AngCur
-    elif joint=J2:
-      global J2AngCur=AngCur
+        J1AngCur=AngCur
+    elif joint==J2:
+        J2AngCur=AngCur
     elif joint==J3:
-      global J3AngCur=AngCur
+        J3AngCur=AngCur
     elif joint==J4:
-      global J4AngCur=AngCur
+        J4AngCur=AngCur
     elif joint==J5:
-      global J5AngCur=AngCur
+        J5AngCur=AngCur
     elif joint==J6:
-      global J6AngCur=AngCur
+        J6AngCur=AngCur
     
     savePosData()
     CalcFwdKin()
@@ -381,7 +378,26 @@ def jogNeg(joint):
     RobotCode = str(ser.readline())
     Pcode = RobotCode[2:4]
     if (Pcode == "01"):
-      applyRobotCal(RobotCode)         
+      applyRobotCal(RobotCode)  
+
+
+  elif direction == 1 and (J1Degs <= (J1PosAngLim - J1AngCur)):
+    J1StepCur = J1StepCur + int(J1jogSteps)
+    J1AngCur = round(J1NegAngLim + (J1StepCur * J1DegPerStep),2)
+    J1curAngEntryField.delete(0, 'end')
+    J1curAngEntryField.insert(0,str(J1AngCur))
+    savePosData()
+    CalcFwdKin()
+    command = "MJA"+J1drivedir+str(J1jogSteps)+"S"+Speed+"G"+ACCdur+"H"+ACCspd+"I"+DECdur+"K"+DECspd+"U"+str(J1StepCur)+"V"+str(J2StepCur)+"W"+str(J3StepCur)+"X"+str(J4StepCur)+"Y"+str(J5StepCur)+"Z"+str(J6StepCur)+"\n"
+    ser.write(command.encode())    
+    ser.flushInput()
+    time.sleep(.2)
+    #ser.read()
+    RobotCode = str(ser.readline())
+    Pcode = RobotCode[2:4]
+    if (Pcode == "01"):
+      applyRobotCal(RobotCode)  
+     
   else:
     
     Curtime = datetime.datetime.now().strftime("%B %d %Y - %I:%M%p")
@@ -1350,23 +1366,38 @@ def TrackjogPos():
     value=tab6.ElogView.get(0,END)
     pickle.dump(value,open("ErrorLog","wb"))    
   
-def TXjogNeg():
-  almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-  almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
+def cartesianJogNeg(point1, point2):
+  
   CX = XcurPos
   CY = YcurPos 
   CZ = ZcurPos
   CRx = RxcurPos
   CRy = RycurPos
   CRz = RzcurPos
-  TCX = 0 - float(TXjogEntryField.get())
+  TCX = 0
   TCY = 0 
   TCZ = 0
   TCRx = 0
   TCRy = 0
   TCRz = 0
-  Track = float(TrackcurEntryField.get())
+  Track = o
   Code = 0  
+  if point1 == T and point2 == X:
+    TCX = 0 - float(TXjogEntryField.get())
+    Track = float(TrackcurEntryField.get())
+
+  elif point1 == T and point2 == Y:
+    TCY = 0 - float(TYjogEntryField.get()) 
+    Track = float(TrackcurEntryField.get())
+
+  elif point1 == T and point2 == Z:
+    TCRx = 0 - float(TYjogEntryField.get()) 
+    Track = float(TrackcurEntryField.get())
+
+  elif point1 == T and point2 == Y:
+    TCY = 0 - float(TYjogEntryField.get()) 
+    Track = float(TrackcurEntryField.get())
+
   newSpeed = speedEntryField.get()
   ACCdur = ACCdurField.get()
   ACCspd = ACCspeedField.get()
@@ -1374,53 +1405,7 @@ def TXjogNeg():
   DECspd = DECspeedField.get()
   MoveXYZ(CX,CY,CZ,CRx,CRy,CRz,newSpeed,ACCdur,ACCspd,DECdur,DECspd,WC,TCX,TCY,TCZ,TCRx,TCRy,TCRz,Track,Code)
 
-def TYjogNeg():
-  almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-  almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
-  CX = XcurPos 
-  CY = YcurPos
-  CZ = ZcurPos
-  CRx = RxcurPos
-  CRy = RycurPos
-  CRz = RzcurPos
-  TCX = 0
-  TCY = 0 - float(TYjogEntryField.get()) 
-  TCZ = 0
-  TCRx = 0
-  TCRy = 0
-  TCRz = 0
-  Track = float(TrackcurEntryField.get())
-  Code = 0
-  newSpeed = speedEntryField.get()
-  ACCdur = ACCdurField.get()
-  ACCspd = ACCspeedField.get()
-  DECdur = DECdurField.get()
-  DECspd = DECspeedField.get()
-  MoveXYZ(CX,CY,CZ,CRx,CRy,CRz,newSpeed,ACCdur,ACCspd,DECdur,DECspd,WC,TCX,TCY,TCZ,TCRx,TCRy,TCRz,Track,Code)
 
-def TZjogNeg():
-  almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
-  almStatusLab2.config(text="SYSTEM READY", bg = "cornflowerblue")
-  CX = XcurPos 
-  CY = YcurPos
-  CZ = ZcurPos
-  CRx = RxcurPos
-  CRy = RycurPos
-  CRz = RzcurPos
-  TCX = 0
-  TCY = 0 
-  TCZ = 0 - float(TZjogEntryField.get())
-  TCRx = 0
-  TCRy = 0
-  TCRz = 0
-  Track = float(TrackcurEntryField.get())
-  Code = 0
-  newSpeed = speedEntryField.get()
-  ACCdur = ACCdurField.get()
-  ACCspd = ACCspeedField.get()
-  DECdur = DECdurField.get()
-  DECspd = DECspeedField.get()
-  MoveXYZ(CX,CY,CZ,CRx,CRy,CRz,newSpeed,ACCdur,ACCspd,DECdur,DECspd,WC,TCX,TCY,TCZ,TCRx,TCRy,TCRz,Track,Code)
 
 def TRxjogNeg():
   almStatusLab.config(text="SYSTEM READY", bg = "cornflowerblue")
@@ -2286,6 +2271,103 @@ def CalcLinWayPt(CX,CY,CZ,curWayPt,):
 ##############################################################################################################################################################
 
 def openCalFile(filepath):
+  global J1StepCur  
+  global JJ1AngCur   
+  global JJ2StepCur  
+  global JJ2AngCur   
+  global JJ3StepCur  
+  global JJ3AngCur   
+  global J4StepCur  
+  global  J4AngCur   
+  global JJ5StepCur  
+  global JJ5AngCur   
+  global JJ6StepCur  
+  global JJ6AngCur   
+  global JcomPort     
+  global Jcom2Port   
+  global JProg       
+  global JServo0on   
+  global JServo0off  
+  global JServo1on   
+  global JServo1off  
+  global JDO1on      
+  global JDO1off     
+  global JDO2on      
+  global JDO2off     
+  global JUFx        
+  global JUFy        
+  global JUFz        
+  global JUFrx       
+  global JUFry       
+  global JUFrz       
+  global JTFx        
+  global JTFy        
+  global JTFz        
+  global JTFrx       
+  global JTFry       
+  global JTFrz       
+  global JFineCalPos 
+
+  global JJ1NegAngLim
+  global JJ1PosAngLim 
+  global JJ1StepLim  
+  global JJ2NegAngLim 
+  global JJ2PosAngLim 
+  global JJ2StepLim   
+  global JJ3NegAngLim 
+  global J J3PosAngLim 
+  global JJ3StepLim   
+  global JJ4NegAngLim 
+  global JJ4PosAngLim 
+  global JJ4StepLim   
+  global JJ5NegAngLim 
+  global JJ5PosAngLim 
+  global JJ5StepLim   
+  global JJ6NegAngLim 
+  global JJ6PosAngLim 
+  global JJ5StepLim   
+
+  global  DHa1        
+  global  DHa2        
+  global DHa3        
+  global DHa4        
+  global DHa5        
+  global DHa6        
+  global DHr1       
+  global DHr2        
+  global DHr3       
+  global DHr4        
+  global DHr5        
+  global DHr6        
+  global DHd1        
+  global DHd2        
+  global  DHd3        
+  global  DHd4       
+  global  DHd5        
+  global  DHd6        
+  global  DHt1       
+  global  DHt2        
+  global  DHt3        
+  global  DHt4        
+  global  DHt5        
+  global  DHt6        
+
+
+  global  CalDir     
+  global MotDir     
+  global  TrackcurPos 
+  global TrackLength 
+  global TrackStepLim
+  global VisFileLoc  
+  global VisProg  
+  global  VisOrigXpix
+  global  VisOrigXmm  
+  global VisOrigYpix
+  global  VisOrigYmm
+  global  VisEndXpix 
+  global  VisEndXmm  
+  global  VisEndYpix  
+  global  VisEndYmm   
 
   config = configparser.ConfigParser()
   config.read(filepath)
@@ -2339,67 +2421,67 @@ def openCalFile(filepath):
   TFrz        =config['']['']
   FineCalPos  =config['']['']
 
-  J1NegAngLim =config['Limits']['J1_Neg_Angle_Limit']
-  J1PosAngLim =config['Limits']['J1_Pos_Angle_Limit']
-  J1StepLim   =config['Limits']['J1_Step_limit']
-  J2NegAngLim =config['Limits']['J2_Neg_Angle_limit']
-  J2PosAngLim =config['Limits']['J2_Pos_Angle_limit']
-  J2StepLim   =config['Limits']['J2_Step_limit']
-  J3NegAngLim =config['Limits']['J3_Neg_Angle_limit']
-  J3PosAngLim =config['Limits']['J3_Pos_Angle_limit']
-  J3StepLim   =config['Limits']['J3_Step_limit']
-  J4NegAngLim =config['Limits']['J4_Neg_Angle_limit']
-  J4PosAngLim =config['Limits']['J4_Pos_Angle_limit']
-  J4StepLim   =config['Limits']['J4_Step_limit']
-  J5NegAngLim =config['Limits']['J5_Neg_Angle_limit']
-  J5PosAngLim =config['Limits']['J5_Pos_Angle_limit']
-  J5StepLim   =config['Limits']['J5_Step_limit']
-  J6NegAngLim =config['Limits']['J6_Neg_Angle_limit']
-  J6PosAngLim =config['Limits']['J6_Pos_Angle_limit']
-  J5StepLim   =config['Limits']['J6_Step_limit']
+  J1NegAngLim =float(config['Limits']['J1_Neg_Angle_Limit'])
+  J1PosAngLim =float(config['Limits']['J1_Pos_Angle_Limit'])
+  J1StepLim   =float(config['Limits']['J1_Step_limit'])
+  J2NegAngLim =float(config['Limits']['J2_Neg_Angle_limit'])
+  J2PosAngLim =float(config['Limits']['J2_Pos_Angle_limit'])
+  J2StepLim   =float(config['Limits']['J2_Step_limit'])
+  J3NegAngLim =float(config['Limits']['J3_Neg_Angle_limit'])
+  J3PosAngLim =float(config['Limits']['J3_Pos_Angle_limit'])
+  J3StepLim   =float(config['Limits']['J3_Step_limit'])
+  J4NegAngLim =float(config['Limits']['J4_Neg_Angle_limit'])
+  J4PosAngLim =float(config['Limits']['J4_Pos_Angle_limit'])
+  J4StepLim   =float(config['Limits']['J4_Step_limit'])
+  J5NegAngLim =float(config['Limits']['J5_Neg_Angle_limit'])
+  J5PosAngLim =float(config['Limits']['J5_Pos_Angle_limit'])
+  J5StepLim   =float(config['Limits']['J5_Step_limit'])
+  J6NegAngLim =float(config['Limits']['J6_Neg_Angle_limit'])
+  J6PosAngLim =float(config['Limits']['J6_Pos_Angle_limit'])
+  J5StepLim   =float(config['Limits']['J6_Step_limit'])
 
-  DHr1        =config['DH parameters']['DHr1']
-  DHr2        =config['DH parameters']['DHr2']
-  DHr3        =config['DH parameters']['DHr3']
-  DHr4        =config['DH parameters']['DHr4']
-  DHr5        =config['DH parameters']['DHr5']
-  DHr6        =config['DH parameters']['DHr6']
-  DHa1        =config['DH parameters']['DHa1']
-  DHa2        =config['DH parameters']['DHa2']
-  DHa3        =config['DH parameters']['DHa3']
-  DHa4        =config['DH parameters']['DHa4']
-  DHa5        =config['DH parameters']['DHa5']
-  DHa6        =config['DH parameters']['DHa6']
-  DHd1        =config['DH parameters']['DHd1']
-  DHd2        =config['DH parameters']['DHd2']
-  DHd3        =config['DH parameters']['DHd3']
-  DHd4        =config['DH parameters']['DHd4']
-  DHd5        =config['DH parameters']['DHd5']
-  DHd6        =config['DH parameters']['DHd6']
-  DHt1        =config['DH parameters']['DHt1']
-  DHt2        =config['DH parameters']['DHt2']
-  DHt3        =config['DH parameters']['DHt3']
-  DHt4        =config['DH parameters']['DHt4']
-  DHt5        =config['DH parameters']['DHt5']
-  DHt6        =config['DH parameters']['DHt6']
+  DHa1        =float(config['DH parameters']['DHa1'])
+  DHa2        =float(config['DH parameters']['DHa2'])
+  DHa3        =float(config['DH parameters']['DHa3'])
+  DHa4        =float(config['DH parameters']['DHa4'])
+  DHa5        =float(config['DH parameters']['DHa5'])
+  DHa6        =float(config['DH parameters']['DHa6'])
+  DHr1        =float(config['DH parameters']['DHr1'])
+  DHr2        =float(config['DH parameters']['DHr2'])
+  DHr3        =float(config['DH parameters']['DHr3'])
+  DHr4        =float(config['DH parameters']['DHr4'])
+  DHr5        =float(config['DH parameters']['DHr5'])
+  DHr6        =float(config['DH parameters']['DHr6'])
+  DHd1        =float(config['DH parameters']['DHd1'])
+  DHd2        =float(config['DH parameters']['DHd2'])
+  DHd3        =float(config['DH parameters']['DHd3'])
+  DHd4        =float(config['DH parameters']['DHd4'])
+  DHd5        =float(config['DH parameters']['DHd5'])
+  DHd6        =float(config['DH parameters']['DHd6'])
+  DHt1        =float(config['DH parameters']['DHt1'])
+  DHt2        =float(config['DH parameters']['DHt2'])
+  DHt3        =float(config['DH parameters']['DHt3'])
+  DHt4        =float(config['DH parameters']['DHt4'])
+  DHt5        =float(config['DH parameters']['DHt5'])
+  DHt6        =float(config['DH parameters']['DHt6'])
 
 
-  CalDir      =config['General']['Calibration_direction']
-  MotDir      =config['General']['Motion_direction']
-  TrackcurPos =config['Track']['']
-  TrackLength =config['Track']['Track_legth']
-  TrackStepLim=config['Track']['Track_step_limit']
+  CalDir      'General']['Calibration_direction']
+  MotDir      'General']['Motion_direction']
+  TrackcurPos =float(config['Track'][''])
+  TrackLength =float(config['Track']['Track_legth'])
+  TrackStepLim=float(config['Track']['Track_step_limit'])
 
-  VisFileLoc  =config['Visual']['Vis_File_Location']
-  VisProg     =config['Visual']['']
-  VisOrigXpix =config['Visual']['origin_x_pixels']
-  VisOrigXmm  =config['Visual']['origin_x_mm']
-  VisOrigYpix =config['Visual']['origin_y_pixels']
-  VisOrigYmm  =config['Visual']['origin_y_mm']
-  VisEndXpix  =config['Visual']['end_x_pixels']
-  VisEndXmm   =config['Visual']['end_x_mm']
-  VisEndYpix  =config['Visual']['end_y_pixels']
-  VisEndYmm   =config['Visual']['end_y_mm']
+  VisFileLoc  'Visual']['Vis_File_Location']
+  VisProg     'Visual'][''])
+  VisOrigXpix 'Visual']['origin_x_pixels']
+  VisOrigXmm  'Visual']['origin_x_mm']
+  VisOrigYpix 'Visual']['origin_y_pixels']
+  VisOrigYmm  'Visual']['origin_y_mm']
+  VisEndXpix  'Visual']['end_x_pixels']
+  VisEndXmm   'Visual']['end_x_mm']
+  VisEndYpix  'Visual']['end_y_pixels']
+  VisEndYmm   'Visual']['end_y_mm']
 
   
   J1OpenLoopVal=config['']['']
@@ -2409,7 +2491,151 @@ def openCalFile(filepath):
   J5OpenLoopVal=config['']['']
   J6OpenLoopVal=config['']['']
 
+  Ui.dh_alpha1.setText(Dha1)
+  Ui.dh_alpha2.setText(Dha2)
+  Ui.dh_alpha3.setText(Dha3)
+  Ui.dh_alpha4.setText(Dha4)
+  Ui.dh_alpha5.setText(Dha5)
+  Ui.dh_alpha6.setText(Dha6)
 
+  Ui.dh_a1.setText(DHr1)
+  Ui.dh_a2.setText(DHr2)
+  Ui.dh_a3.setText(DHr3)
+  Ui.dh_a4.setText(DHr4)
+  Ui.dh_a5.setText(DHr5)
+  Ui.dh_a6.setText(DHr6)
+
+  Ui.dh_d1.setText(DHd1)
+  Ui.dh_d2.setText(DHd2)
+  Ui.dh_d3.setText(DHd3)
+  Ui.dh_d4.setText(DHd4)
+  Ui.dh_d5.setText(DHd5)
+  Ui.dh_d6.setText(DHd6)
+
+  Ui.dh_theta1.setText(DHt1)
+  Ui.dh_theta2.setText(DHt2)
+  Ui.dh_theta3.setText(DHt3)
+  Ui.dh_theta4.setText(DHt4)
+  Ui.dh_theta5.setText(DHt5)
+  Ui.dh_theta6.setText(DHt6)
+
+
+def saveConfig(self):
+
+  config = configparser.ConfigParser()
+  
+
+  config[''][''] = J1StepCur  
+  config[''][''] = J1AngCur    
+  config[''][''] = J2StepCur   
+  config[''][''] = J2AngCur    
+  config[''][''] = J3StepCur   
+  config[''][''] = J3AngCur    
+  config[''][''] = J4StepCur   
+  config[''][''] = J4AngCur    
+  config[''][''] = J5StepCur   
+  config[''][''] = J5AngCur    
+  config[''][''] = J6StepCur   
+  config[''][''] = J6AngCur    
+  config['General']['comPort1'] = comPort     
+  config['General']['comPort2'] = com2Port 
+  config[''][''] = Prog        
+  config[''][''] = Servo0on    
+  config[''][''] = Servo0off   
+  config[''][''] = Servo1on    
+  config[''][''] = Servo1off   
+  config[''][''] = DO1on       
+  config[''][''] = DO1off      
+  config[''][''] = DO2on       
+  config[''][''] = DO2off      
+  config[''][''] = UFx         
+  config[''][''] = UFy         
+  config[''][''] = UFz         
+  config[''][''] = UFrx        
+  config[''][''] = UFry        
+  config[''][''] = UFrz        
+  config[''][''] = TFx         
+  config[''][''] = TFy         
+  config[''][''] = TFz         
+  config[''][''] = TFrx        
+  config[''][''] = TFry        
+  config[''][''] = TFrz        
+  config[''][''] = FineCalPos  
+
+  config['Limits']['J1_Neg_Angle_Limit'] = J1NegAngLim 
+  config['Limits']['J1_Pos_Angle_Limit'] = J1PosAngLim 
+  config['Limits']['J1_Step_limit'] = J1StepLim 
+  config['Limits']['J2_Neg_Angle_limit'] = J2NegAngLim 
+  config['Limits']['J2_Pos_Angle_limit'] = J2PosAngLim 
+  config['Limits']['J2_Step_limit'] = J2StepLim   
+  config['Limits']['J3_Neg_Angle_limit'] = J3NegAngLim 
+  config['Limits']['J3_Pos_Angle_limit'] = J3PosAngLim
+  config['Limits']['J3_Step_limit'] = J3StepLim  
+  config['Limits']['J4_Neg_Angle_limit'] = J4NegAngLim
+  config['Limits']['J4_Pos_Angle_limit'] = J4PosAngLim 
+  config['Limits']['J4_Step_limit'] = J4StepLim
+  config['Limits']['J5_Neg_Angle_limit'] = J5NegAngLim 
+  config['Limits']['J5_Pos_Angle_limit'] = J5PosAngLim 
+  config['Limits']['J5_Step_limit'] = J5StepLim
+  config['Limits']['J6_Neg_Angle_limit'] = J6NegAngLim 
+  config['Limits']['J6_Pos_Angle_limit'] = J6PosAngLim 
+  config['Limits']['J6_Step_limit'] = J5StepLim
+
+  config['DH parameters']['DHa1'] = DHa1
+  config['DH parameters']['DHa2'] = DHa2
+  config['DH parameters']['DHa3'] = DHa3
+  config['DH parameters']['DHa4'] = DHa4
+  config['DH parameters']['DHa5'] = DHa5
+  config['DH parameters']['DHa6'] = DHa6
+  config['DH parameters']['DHr1'] = DHr1
+  config['DH parameters']['DHr2'] = DHr2
+  config['DH parameters']['DHr3'] = DHr3
+  config['DH parameters']['DHr4'] = DHr4
+  config['DH parameters']['DHr5'] = DHr5
+  config['DH parameters']['DHr6'] = DHr6
+  config['DH parameters']['DHd1'] = DHd1
+  config['DH parameters']['DHd2'] = DHd2
+  config['DH parameters']['DHd3'] = DHd3
+  config['DH parameters']['DHd4'] = DHd4
+  config['DH parameters']['DHd5'] = DHd5
+  config['DH parameters']['DHd6'] = DHd6
+  config['DH parameters']['DHt1'] = DHt1
+  config['DH parameters']['DHt2'] = DHt2
+  config['DH parameters']['DHt3'] = DHt3
+  config['DH parameters']['DHt4'] = DHt4
+  config['DH parameters']['DHt5'] = DHt5
+  config['DH parameters']['DHt6'] = DHt6
+
+
+ config['General']['Calibration_direction'] =  CalDir
+ config['General']['Motion_direction'] =  MotDir
+config['Track'][''] =   TrackcurPos  
+  TrackLength  config['Track']['Track_legth'])
+  TrackStepLim config['Track']['Track_step_limit'])
+
+  VisFileLoc  =(config['Visual']['Vis_File_Location']
+  VisProg     =(config['Visual'][''])
+  VisOrigXpix =(config['Visual']['origin_x_pixels']
+  VisOrigXmm  =(config['Visual']['origin_x_mm']
+  VisOrigYpix =(config['Visual']['origin_y_pixels']
+  VisOrigYmm  =(config['Visual']['origin_y_mm']
+  VisEndXpix  =(config['Visual']['end_x_pixels']
+  VisEndXmm   =(config['Visual']['end_x_mm']
+  VisEndYpix  =(config['Visual']['end_y_pixels']
+  VisEndYmm   =(config['Visual']['end_y_mm']
+
+  
+  J1OpenLoopVal
+  J2OpenLoopVal
+  J3OpenLoopVal
+  J4OpenLoopVal
+  J5OpenLoopVal
+  J6OpenLoopVal
+
+
+
+  with open('config.ini', 'w') as configfile:
+          config.write(configfile)
 ####
 
 if (J1OpenLoopVal == 1):
