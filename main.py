@@ -31,8 +31,24 @@ class Worker(QRunnable):
             pass
 
 
+class InputNumPad(QDialog,Ui_dialog):
 
+
+    def __init__(self):
+        super(CustomDialog, self).__init__()
+        self.setupUi(self)
+
+    def getResults(self):
+        if self.exec_() == QDialog.Accepted:
+            # get all values
+            val = self.some_widget.some_function()
+            val2 = self.some_widget2.some_another_function()
+            return val1, val2, ...
+        else:
+            return None
 class Ui(qt.QMainWindow):
+
+
 
     def set_parameter(self, param):
         if param == alpha1:
@@ -84,6 +100,10 @@ class Ui(qt.QMainWindow):
         elif param == theta6:
             global DHt6 = self.dh_theta6.text()
 
+    def numpadDialog(self):
+        w=InputNumPad()
+        Value = w.getResults()
+
 
 
 
@@ -102,14 +122,19 @@ class Ui(qt.QMainWindow):
 
 
         ##Jogging Buttons##
-        #self.jog1pos.clicked.connect(move.)
+        self.jog1pos.clicked.connect(move.jogJoint(J1, 1)
+        self.jog1pos.clicked.connect(move.jogJoint(J2, 1)
+        self.jog1pos.clicked.connect(move.jogJoint(J3, 1)
+        self.jog1pos.clicked.connect(move.jogJoint(J4, 1)
+        self.jog1pos.clicked.connect(move.jogJoint(J5, 1)
+        self.jog1pos.clicked.connect(move.jogJoint(J6, 1)
 
-        self.jog1neg.clicked.connect(move.jogNeg(J1))
-        self.jog2neg.clicked.connect(move.jogNeg(J2))
-        self.jog3neg.clicked.connect(move.jogNeg(J3))
-        self.jog4neg.clicked.connect(move.jogNeg(J4))
-        self.jog5neg.clicked.connect(move.jogNeg(J5))
-        self.jog6neg.clicked.connect(move.jogNeg(J6))
+        self.jog1neg.clicked.connect(move.jogJoint(J1, 0))
+        self.jog2neg.clicked.connect(move.jogJoint(J2, 0))
+        self.jog3neg.clicked.connect(move.jogJoint(J3, 0))
+        self.jog4neg.clicked.connect(move.jogJoint(J4, 0))
+        self.jog5neg.clicked.connect(move.jogJoint(J5, 0))
+        self.jog6neg.clicked.connect(move.jogJoint(J6, 0))
 
         self.dh_alpha1.textChanged.connect(set_parameter(alpha1))
         self.dh_alpha1.setValidator(QtGui.QDoubleValidator.StandardNotation())

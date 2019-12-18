@@ -1036,9 +1036,8 @@ class move:
             
             rowinproc = 0  	 
 
-    def ServoCom(servo):
-        savePosData() 
-        servoPos = 
+    def ServoCom(servo, servoPos):
+        
         if servo == 0:
                 command = "SV0P"+servoPos+"\n"
         elif servo == 1:
@@ -1071,7 +1070,7 @@ class move:
         time.sleep(.2)
         ser2.read() 
 
-    def jogNeg(joint):
+    def jogJoint(joint):
         global JogStepsStat
         global J1StepCur
         global J2StepCur

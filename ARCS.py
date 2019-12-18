@@ -2398,6 +2398,7 @@ def openCalFile(filepath):
   J6AngCur    =config['']['']
   comPort     =config['General']['comPort1']
   com2Port    =config['General']['comPort2']
+  buadRate    =config['General']['baudrate']
   Prog        =config['']['']
   Servo0on    =config['']['']
   Servo0off   =config['']['']
@@ -2407,18 +2408,18 @@ def openCalFile(filepath):
   DO1off      =config['']['']
   DO2on       =config['']['']
   DO2off      =config['']['']
-  UFx         =config['']['']
-  UFy         =config['']['']
-  UFz         =config['']['']
-  UFrx        =config['']['']
-  UFry        =config['']['']
-  UFrz        =config['']['']
-  TFx         =config['']['']
-  TFy         =config['']['']
-  TFz         =config['']['']
-  TFrx        =config['']['']
-  TFry        =config['']['']
-  TFrz        =config['']['']
+  UFx         =config['world_frame']['x']
+  UFy         =config['world_frame']['y']
+  UFz         =config['world_frame']['z']
+  UFrx        =config['world_frame']['rx']
+  UFry        =config['world_frame']['ry']
+  UFrz        =config['world_frame']['rz']
+  TFx         =config['tool_frame']['x']
+  TFy         =config['tool_frame']['y']
+  TFz         =config['tool_frame']['z']
+  TFrx        =config['tool_frame']['rx']
+  TFry        =config['tool_frame']['ry']
+  TFrz        =config['tool_frame']['rz']
   FineCalPos  =config['']['']
 
   J1NegAngLim =float(config['Limits']['J1_Neg_Angle_Limit'])
@@ -2490,6 +2491,10 @@ def openCalFile(filepath):
   J4OpenLoopVal=config['']['']
   J5OpenLoopVal=config['']['']
   J6OpenLoopVal=config['']['']
+
+  Ui.comPort1.setText(comPort)
+  Ui.comPort2.setText(com2Port)
+  
 
   Ui.dh_alpha1.setText(Dha1)
   Ui.dh_alpha2.setText(Dha2)

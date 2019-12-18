@@ -320,386 +320,6 @@ font: 14pt &quot;DejaVu Sans&quot;; }
               <string>PROG</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_3">
-              <item row="0" column="0" colspan="4">
-               <widget class="QFrame" name="gridFrame_9">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>100</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>60</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>9999</width>
-                  <height>100</height>
-                 </size>
-                </property>
-                <property name="baseSize">
-                 <size>
-                  <width>1980</width>
-                  <height>80</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">
-QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
-</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_24">
-                 <property name="leftMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>5</number>
-                 </property>
-                 <item row="1" column="6">
-                  <widget class="QLabel" name="label_20">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J3</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="7">
-                  <widget class="QLCDNumber" name="j3pos"/>
-                 </item>
-                 <item row="1" column="13">
-                  <widget class="QLCDNumber" name="j6pos"/>
-                 </item>
-                 <item row="1" column="11">
-                  <widget class="QLCDNumber" name="j5pos"/>
-                 </item>
-                 <item row="1" column="4">
-                  <widget class="QLabel" name="label_22">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J2</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="5">
-                  <widget class="QLCDNumber" name="j2pos"/>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QLabel" name="label_19">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J1</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
-                  <widget class="QLCDNumber" name="j1pos">
-                   <property name="smallDecimalPoint">
-                    <bool>false</bool>
-                   </property>
-                   <property name="digitCount">
-                    <number>3</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="12">
-                  <widget class="QLabel" name="label_25">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J6</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="8">
-                  <widget class="QLabel" name="label_21">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J4</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="10">
-                  <widget class="QLabel" name="label_11">
-                   <property name="maximumSize">
-                    <size>
-                     <width>30</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>J5</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="9">
-                  <widget class="QLCDNumber" name="j4pos"/>
-                 </item>
-                 <item row="1" column="14">
-                  <widget class="QLabel" name="label_26">
-                   <property name="maximumSize">
-                    <size>
-                     <width>80</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Track</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="15">
-                  <widget class="QLCDNumber" name="trackpos"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QFrame" name="gridFrame_2">
-                <property name="maximumSize">
-                 <size>
-                  <width>430</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_12">
-                 <property name="leftMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>5</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QFrame" name="gridFrame">
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_54">
-                    <property name="leftMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>5</number>
-                    </property>
-                    <item row="0" column="0">
-                     <widget class="QComboBox" name="recentfilecombobox">
-                      <property name="maximumSize">
-                       <size>
-                        <width>125</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-</string>
-                      </property>
-                      <property name="currentText">
-                       <string>RECENT</string>
-                      </property>
-                      <item>
-                       <property name="text">
-                        <string>RECENT</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QLabel" name="label_49">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::Box</enum>
-                      </property>
-                      <property name="lineWidth">
-                       <number>2</number>
-                      </property>
-                      <property name="text">
-                       <string>PROGRAM LIST</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QTableView" name="filesystemtable">
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Plain</enum>
-                   </property>
-                   <property name="lineWidth">
-                    <number>1</number>
-                   </property>
-                   <property name="sortingEnabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="hiddenColumns" stdset="0">
-                    <string>1,2</string>
-                   </property>
-                   <attribute name="horizontalHeaderDefaultSectionSize">
-                    <number>150</number>
-                   </attribute>
-                   <attribute name="verticalHeaderDefaultSectionSize">
-                    <number>50</number>
-                   </attribute>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QFrame" name="gridFrame_2">
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-min-height: 40px;
-min-width: 50px;
-max-height: 40px;
-max-width: 800px;
-font: 12pt &quot;DejaVu Sans&quot;;
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-}
-
-</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_15">
-                    <property name="leftMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>5</number>
-                    </property>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="navSelect">
-                      <property name="text">
-                       <string>SELECT</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QPushButton" name="navUp">
-                      <property name="text">
-                       <string>UP</string>
-                      </property>
-                      <property name="flat">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="navDown">
-                      <property name="text">
-                       <string>DOWN</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QPushButton" name="navParent">
-                      <property name="text">
-                       <string>PRV LVL</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QPushButton" name="editfile">
-                      <property name="text">
-                       <string>EDIT</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="1" column="0" colspan="2">
-               <widget class="QFrame" name="frame">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_6">
-                 <item row="0" column="0">
-                  <widget class="QListWidget" name="programView">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(238, 238, 236);</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
               <item row="1" column="3" rowspan="2">
                <widget class="QFrame" name="gridFrame_3">
                 <property name="maximumSize">
@@ -826,43 +446,6 @@ background-color:rgb(52, 101, 164);</string>
                     <property name="bottomMargin">
                      <number>5</number>
                     </property>
-                    <item row="2" column="1" rowspan="2">
-                     <widget class="QSlider" name="jog_increment_slider">
-                      <property name="minimumSize">
-                       <size>
-                        <width>50</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="autoFillBackground">
-                       <bool>false</bool>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-width: 20px;
-height: 60px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}</string>
-                      </property>
-                      <property name="inputMethodHints">
-                       <set>Qt::ImhNone</set>
-                      </property>
-                      <property name="minimum">
-                       <number>1</number>
-                      </property>
-                      <property name="maximum">
-                       <number>100</number>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                     </widget>
-                    </item>
                     <item row="0" column="1">
                      <widget class="QLabel" name="label_38">
                       <property name="minimumSize">
@@ -892,6 +475,72 @@ background-color:rgb(52, 101, 164);</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1" rowspan="2">
+                     <widget class="QSlider" name="jog_increment_slider">
+                      <property name="minimumSize">
+                       <size>
+                        <width>50</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="autoFillBackground">
+                       <bool>false</bool>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QSlider::handle:vertical {
+    height: 40px;
+    background: green;
+    margin: 0 -4px; 
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #c4c4c4);
+    margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+    border: 1px solid #5c5c5c;
+    width: 18px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
+                      </property>
+                      <property name="inputMethodHints">
+                       <set>Qt::ImhNone</set>
+                      </property>
+                      <property name="minimum">
+                       <number>1</number>
+                      </property>
+                      <property name="maximum">
+                       <number>100</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QDoubleSpinBox" name="mm_jog_box">
+                      <property name="tabletTracking">
+                       <bool>false</bool>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="suffix">
+                       <string>mm</string>
+                      </property>
+                      <property name="maximum">
+                       <double>199.990000000000009</double>
+                      </property>
+                      <property name="singleStep">
+                       <double>0.010000000000000</double>
                       </property>
                      </widget>
                     </item>
@@ -1136,17 +785,29 @@ background-color:rgb(52, 101, 164);
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="0">
-                     <widget class="QPushButton" name="jog_track_pos">
+                    <item row="3" column="1">
+                     <widget class="QPushButton" name="jog_track_neg">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>59</height>
+                       </size>
+                      </property>
                       <property name="text">
-                       <string>Track +</string>
+                       <string>Track -</string>
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="2">
-                     <widget class="QPushButton" name="jog_track_neg">
+                    <item row="4" column="1">
+                     <widget class="QPushButton" name="jog_track_pos">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>50</height>
+                       </size>
+                      </property>
                       <property name="text">
-                       <string>Track -</string>
+                       <string>Track +</string>
                       </property>
                      </widget>
                     </item>
@@ -1466,7 +1127,7 @@ background-color:rgb(52, 101, 164);
                 </layout>
                </widget>
               </item>
-              <item row="1" column="2">
+              <item row="2" column="2">
                <widget class="QFrame" name="frame_2">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -1475,67 +1136,6 @@ background-color:rgb(52, 101, 164);
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_9">
-                 <item row="1" column="0">
-                  <widget class="QFrame" name="frame_4">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>60</height>
-                    </size>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_3">
-                    <item>
-                     <widget class="QComboBox" name="teach_move_selection">
-                      <property name="styleSheet">
-                       <string notr="true">
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-</string>
-                      </property>
-                      <property name="currentText">
-                       <string>Joint Move</string>
-                      </property>
-                      <item>
-                       <property name="text">
-                        <string>Joint Move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Linear Move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Circular move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Arc move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Wait Input On</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Wait Input Off</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
                  <item row="3" column="0">
                   <widget class="QFrame" name="frame_3">
                    <property name="styleSheet">
@@ -1612,6 +1212,272 @@ background-color:rgb(52, 101, 164);</string>
                     <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QFrame" name="frame_24">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QFrame" name="frame_4">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>60</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_3">
+                    <item>
+                     <widget class="QComboBox" name="teach_move_selection">
+                      <property name="styleSheet">
+                       <string notr="true">
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+</string>
+                      </property>
+                      <property name="currentText">
+                       <string>Joint Move</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Joint Move</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Linear Move</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Circular move</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Arc move</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Wait Input On</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Wait Input Off</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="3">
+               <widget class="QFrame" name="frame">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_6">
+                 <item row="0" column="0">
+                  <widget class="QListWidget" name="programView">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(238, 238, 236);</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="4">
+               <widget class="QFrame" name="gridFrame_9">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>100</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>9999</width>
+                  <height>100</height>
+                 </size>
+                </property>
+                <property name="baseSize">
+                 <size>
+                  <width>1980</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
+</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_24">
+                 <property name="leftMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                 <item row="1" column="6">
+                  <widget class="QLabel" name="label_20">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J3</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="7">
+                  <widget class="QLCDNumber" name="j3pos"/>
+                 </item>
+                 <item row="1" column="13">
+                  <widget class="QLCDNumber" name="j6pos"/>
+                 </item>
+                 <item row="1" column="11">
+                  <widget class="QLCDNumber" name="j5pos"/>
+                 </item>
+                 <item row="1" column="4">
+                  <widget class="QLabel" name="label_22">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="5">
+                  <widget class="QLCDNumber" name="j2pos"/>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLabel" name="label_19">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J1</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLCDNumber" name="j1pos">
+                   <property name="smallDecimalPoint">
+                    <bool>false</bool>
+                   </property>
+                   <property name="digitCount">
+                    <number>3</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="12">
+                  <widget class="QLabel" name="label_25">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J6</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="8">
+                  <widget class="QLabel" name="label_21">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J4</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="10">
+                  <widget class="QLabel" name="label_11">
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>J5</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="9">
+                  <widget class="QLCDNumber" name="j4pos"/>
+                 </item>
+                 <item row="1" column="14">
+                  <widget class="QLabel" name="label_26">
+                   <property name="maximumSize">
+                    <size>
+                     <width>80</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Track</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="15">
+                  <widget class="QLCDNumber" name="trackpos"/>
                  </item>
                 </layout>
                </widget>
@@ -2219,88 +2085,8 @@ color: rgb(238, 238, 236);</string>
                    <property name="frameShape">
                     <enum>QFrame::Panel</enum>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_23">
-                    <property name="leftMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>5</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>5</number>
-                    </property>
-                    <item row="2" column="4">
-                     <widget class="QFrame" name="gridFrame">
-                      <property name="minimumSize">
-                       <size>
-                        <width>270</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>260</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::Box</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_61">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>5</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>5</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>5</number>
-                       </property>
-                       <item row="1" column="0">
-                        <widget class="QTextEdit" name="textEdit"/>
-                       </item>
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="filepath">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>25</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>250</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);</string>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::Box</enum>
-                         </property>
-                         <property name="lineWidth">
-                          <number>2</number>
-                         </property>
-                         <property name="text">
-                          <string>No file loaded</string>
-                         </property>
-                         <property name="rules" stdset="0">
-                          <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:file&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Text&quot;, &quot;expression&quot;: &quot;str(ch[0])&quot;, &quot;name&quot;: &quot;file path&quot;}]</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item row="2" column="0" colspan="4">
+                   <layout class="QGridLayout" name="gridLayout_39">
+                    <item row="0" column="0" rowspan="2">
                      <widget class="QFrame" name="gridFrame">
                       <property name="minimumSize">
                        <size>
@@ -2575,6 +2361,260 @@ background-color:rgb(52, 101, 164);</string>
                             </property>
                             <property name="rules" stdset="0">
                              <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:current_vel&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Text&quot;, &quot;expression&quot;: &quot;'FEED ' + str(ch[0]*60) + '  IPM'&quot;, &quot;name&quot;: &quot;current velocity&quot;}]</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QFrame" name="gridFrame">
+                      <property name="minimumSize">
+                       <size>
+                        <width>270</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>260</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::Box</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_61">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>5</number>
+                       </property>
+                       <item row="1" column="0">
+                        <widget class="QTextEdit" name="textEdit"/>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="filepath">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>25</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>250</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);</string>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::Box</enum>
+                         </property>
+                         <property name="lineWidth">
+                          <number>2</number>
+                         </property>
+                         <property name="text">
+                          <string>No file loaded</string>
+                         </property>
+                         <property name="rules" stdset="0">
+                          <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:file&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Text&quot;, &quot;expression&quot;: &quot;str(ch[0])&quot;, &quot;name&quot;: &quot;file path&quot;}]</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QFrame" name="gridFrame_4">
+                      <property name="maximumSize">
+                       <size>
+                        <width>430</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::Box</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_23">
+                       <property name="leftMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>5</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>5</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QFrame" name="gridFrame_7">
+                         <property name="frameShape">
+                          <enum>QFrame::Box</enum>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_55">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>5</number>
+                          </property>
+                          <item row="0" column="0">
+                           <widget class="QComboBox" name="recentfilecombobox_2">
+                            <property name="maximumSize">
+                             <size>
+                              <width>125</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+</string>
+                            </property>
+                            <property name="currentText">
+                             <string>RECENT</string>
+                            </property>
+                            <item>
+                             <property name="text">
+                              <string>RECENT</string>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QLabel" name="label_76">
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);</string>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::Box</enum>
+                            </property>
+                            <property name="lineWidth">
+                             <number>2</number>
+                            </property>
+                            <property name="text">
+                             <string>PROGRAM LIST</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QTableView" name="filesystemtable_2">
+                         <property name="frameShape">
+                          <enum>QFrame::Box</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Plain</enum>
+                         </property>
+                         <property name="lineWidth">
+                          <number>1</number>
+                         </property>
+                         <property name="sortingEnabled">
+                          <bool>true</bool>
+                         </property>
+                         <property name="hiddenColumns" stdset="0">
+                          <string>1,2</string>
+                         </property>
+                         <attribute name="horizontalHeaderDefaultSectionSize">
+                          <number>150</number>
+                         </attribute>
+                         <attribute name="verticalHeaderDefaultSectionSize">
+                          <number>50</number>
+                         </attribute>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QFrame" name="gridFrame_8">
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+min-height: 40px;
+min-width: 50px;
+max-height: 40px;
+max-width: 800px;
+font: 12pt &quot;DejaVu Sans&quot;;
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+}
+
+</string>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::Box</enum>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout_35">
+                          <property name="leftMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>5</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>5</number>
+                          </property>
+                          <item row="0" column="4">
+                           <widget class="QPushButton" name="navSelect_2">
+                            <property name="text">
+                             <string>SELECT</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QPushButton" name="navUp_2">
+                            <property name="text">
+                             <string>UP</string>
+                            </property>
+                            <property name="flat">
+                             <bool>false</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QPushButton" name="navDown_2">
+                            <property name="text">
+                             <string>DOWN</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QPushButton" name="navParent_2">
+                            <property name="text">
+                             <string>PRV LVL</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="3">
+                           <widget class="QPushButton" name="editfile_2">
+                            <property name="text">
+                             <string>EDIT</string>
                             </property>
                            </widget>
                           </item>
@@ -3816,7 +3856,7 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                  <enum>QTabWidget::Rounded</enum>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -4372,16 +4412,16 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                           </property>
                           <layout class="QGridLayout" name="gridLayout_34">
                            <item row="0" column="0">
-                            <widget class="QPushButton" name="pushButton_2">
+                            <widget class="QPushButton" name="saveCalibration">
                              <property name="text">
-                              <string>PushButton</string>
+                              <string>Save Calibration</string>
                              </property>
                             </widget>
                            </item>
                            <item row="1" column="0">
                             <widget class="QPushButton" name="pushButton_5">
                              <property name="text">
-                              <string>PushButton</string>
+                              <string>Load Calibration</string>
                              </property>
                             </widget>
                            </item>
@@ -5289,6 +5329,19 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                     </layout>
                    </widget>
                   </item>
+                  <item row="0" column="1">
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>1000</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
                  </layout>
                 </widget>
                 <widget class="QWidget" name="tab">
@@ -5322,7 +5375,7 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                          </widget>
                         </item>
                         <item row="2" column="2">
-                         <widget class="QLineEdit" name="lineEdit_10">
+                         <widget class="QLineEdit" name="comPort2">
                           <property name="maximumSize">
                            <size>
                             <width>200</width>
@@ -5342,7 +5395,7 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                          </widget>
                         </item>
                         <item row="1" column="2">
-                         <widget class="QLineEdit" name="lineEdit_4">
+                         <widget class="QLineEdit" name="comPort1">
                           <property name="maximumSize">
                            <size>
                             <width>200</width>

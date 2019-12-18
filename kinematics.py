@@ -14,6 +14,19 @@ class kinematics:
         global J5AngCur
         global J6AngCur
         global WC
+        global UFx         
+        global UFy         
+        global UFz         
+        global UFrx        
+        global UFry        
+        global UFrz        
+        global TFx         
+        global TFy         
+        global TFz         
+        global TFrx         
+        global TFry        
+        global TFrz        
+
         if (J1AngCur == 0):
             J1AngCur = .0001
         if (J2AngCur == 0):
@@ -64,19 +77,19 @@ class kinematics:
         F17 = DHa5
         F18 = DHa6
         ## WORK FRAME INPUT
-        H13 = float(UFxEntryField.get()) 
-        H14 = float(UFyEntryField.get())  
-        H15 = float(UFzEntryField.get())
-        H16 = float(UFrxEntryField.get()) 
-        H17 = float(UFryEntryField.get()) 
-        H18 = float(UFrzEntryField.get()) 
+        H13 = float(UFx) 
+        H14 = float(UFy)  
+        H15 = float(UFz)
+        H16 = float(UFrx) 
+        H17 = float(UFry) 
+        H18 = float(UFrz) 
         ## TOOL FRAME INPUT
-        J13 = float(TFxEntryField.get()) 
-        J14 = float(TFyEntryField.get())  
-        J15 = float(TFzEntryField.get())
-        J16 = float(TFrxEntryField.get()) 
-        J17 = float(TFryEntryField.get()) 
-        J18 = float(TFrzEntryField.get())
+        J13 = float(TFx) 
+        J14 = float(TFy)  
+        J15 = float(TFz)
+        J16 = float(TFrx) 
+        J17 = float(TFry) 
+        J18 = float(TFrz)
         ## WORK FRAME TABLE
         B21 = math.cos(math.radians(H18))*math.cos(math.radians(H17))
         B22 = math.sin(math.radians(H18))*math.cos(math.radians(H17))
@@ -435,19 +448,19 @@ class kinematics:
         F17 = DHa5
         F18 = DHa6	
         ## WORK FRAME INPUT
-        H13 = -float(UFxEntryField.get()) 
-        H14 = -float(UFyEntryField.get())  
-        H15 = -float(UFzEntryField.get())
-        H16 = -float(UFrxEntryField.get()) 
-        H17 = -float(UFryEntryField.get()) 
-        H18 = -float(UFrzEntryField.get()) 
+        H13 = -float(UFx) 
+        H14 = -float(UFy)  
+        H15 = -float(UFz)
+        H16 = -float(UFrx) 
+        H17 = -float(UFry) 
+        H18 = -float(UFrz) 
         ## TOOL FRAME INPUT
-        J13 = -float(TFxEntryField.get()) + TCX
-        J14 = -float(TFyEntryField.get()) + TCY
-        J15 = -float(TFzEntryField.get()) + TCZ
-        J16 = -float(TFrxEntryField.get()) + TCRx
-        J17 = -float(TFryEntryField.get()) + TCRy
-        J18 = -float(TFrzEntryField.get()) + TCRz
+        J13 = -float(TFx) + TCX
+        J14 = -float(TFy) + TCY
+        J15 = -float(TFz) + TCZ
+        J16 = -float(TFrx) + TCRx
+        J17 = -float(TFry) + TCRy
+        J18 = -float(TFrz) + TCRz
         ## WORK FRAME TABLE
         N30 = math.cos(math.radians(H18))*math.cos(math.radians(H17))
         O30 = -math.sin(math.radians(H18))*math.cos(math.radians(H16))+math.cos(math.radians(H18))*math.sin(math.radians(H17))*math.sin(math.radians(H16))
