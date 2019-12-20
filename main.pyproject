@@ -1,4 +1,4 @@
 {
- "files": ["main.py","mainwindow.ui","style.qss"]
+ "files": ["mainwindow.ui","main.py","style.qss","keypad/dialog.ui","keypad/__init__.py","keypad/__init__.pyc","keypad/numpad.py","keypad/numpad.pyc","keypad/numpad.pyproject.user"]
 }
     
