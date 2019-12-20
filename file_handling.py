@@ -1,4 +1,6 @@
-class file:
+
+class fileHandling:
+    
     def loadFile(self):
             fname = qt.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
             if fname:
@@ -22,7 +24,7 @@ class file:
                 file.write(item.text())
             file.close()
         else:
-            fname = qt.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
+                fname = qt.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
                 if fname:
                     file = open(fname[0],'w')
                     items=[]
