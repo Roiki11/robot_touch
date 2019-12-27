@@ -459,7 +459,7 @@ background-color:rgb(52, 101, 164);</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_10">
                        <item>
-                        <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                        <widget class="QDoubleSpinBox" name="jogDistanceBox">
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
                          </property>
@@ -535,7 +535,7 @@ background-color:rgb(52, 101, 164);</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_9">
                        <item>
-                        <widget class="QPushButton" name="pushButton_6">
+                        <widget class="QPushButton" name="jog_increment001">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -545,10 +545,13 @@ background-color:rgb(52, 101, 164);</string>
                          <property name="text">
                           <string>0.01 Deg</string>
                          </property>
+                         <property name="checkable">
+                          <bool>true</bool>
+                         </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_7">
+                        <widget class="QPushButton" name="jog_Increment01">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -561,7 +564,7 @@ background-color:rgb(52, 101, 164);</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_11">
+                        <widget class="QPushButton" name="jog_increment1">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -574,7 +577,7 @@ background-color:rgb(52, 101, 164);</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_2">
+                        <widget class="QPushButton" name="jog_increment10">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -636,8 +639,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>Y+</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:y,pos</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -652,8 +655,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>Z-</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:z,neg</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -668,8 +671,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>X+</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:x,pos</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -690,11 +693,11 @@ background-color:rgb(52, 101, 164);
                       <property name="checkable">
                        <bool>false</bool>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
                       <property name="rules" stdset="0">
                        <string>[]</string>
-                      </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog-mode.toggle</string>
                       </property>
                      </widget>
                     </item>
@@ -709,6 +712,9 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>+R</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item row="0" column="2">
@@ -722,8 +728,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>Z+</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:z,pos</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -738,8 +744,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>X-</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:x,neg</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -754,8 +760,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>W-</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:a,neg</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -770,6 +776,9 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>+P</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item row="0" column="1">
@@ -783,8 +792,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>Y-</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string>machine.jog.axis:y,neg</string>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -799,8 +808,8 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>W+</string>
                       </property>
-                      <property name="actionName" stdset="0">
-                       <string/>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -815,6 +824,9 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>-P</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item row="4" column="2">
@@ -827,6 +839,9 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>-R</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -841,6 +856,9 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>Track -</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item row="4" column="1">
@@ -853,6 +871,9 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>Track +</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>
@@ -885,6 +906,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J6 -</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -900,6 +927,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J2 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -920,6 +953,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J2 +</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -935,6 +974,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J1 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -952,6 +997,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J5 -</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -967,6 +1018,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J4 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -984,6 +1041,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J4 +</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -999,6 +1062,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J5 +</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -1016,6 +1085,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J3 +</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -1032,6 +1107,12 @@ background-color:rgb(52, 101, 164);
                       <property name="text">
                        <string>J3 -</string>
                       </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
                       </attribute>
@@ -1047,6 +1128,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J6+</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -1160,6 +1247,12 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J1 +</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
                       </property>
                       <attribute name="buttonGroup">
                        <string notr="true">jogButtons</string>
@@ -1286,6 +1379,9 @@ background-color:rgb(52, 101, 164);</string>
                    <layout class="QHBoxLayout" name="horizontalLayout_3">
                     <item>
                      <widget class="QComboBox" name="teach_move_selection">
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">
 color: rgb(255, 255, 255);
@@ -1859,6 +1955,15 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                               </color>
                              </brush>
                             </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="NoBrush">
+                              <color alpha="128">
+                               <red>238</red>
+                               <green>238</green>
+                               <blue>236</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
                            </active>
                            <inactive>
                             <colorrole role="WindowText">
@@ -1915,6 +2020,15 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                               </color>
                              </brush>
                             </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="NoBrush">
+                              <color alpha="128">
+                               <red>238</red>
+                               <green>238</green>
+                               <blue>236</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
                            </inactive>
                            <disabled>
                             <colorrole role="WindowText">
@@ -1968,6 +2082,15 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                                <red>239</red>
                                <green>41</green>
                                <blue>41</blue>
+                              </color>
+                             </brush>
+                            </colorrole>
+                            <colorrole role="PlaceholderText">
+                             <brush brushstyle="NoBrush">
+                              <color alpha="128">
+                               <red>238</red>
+                               <green>238</green>
+                               <blue>236</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -2031,6 +2154,9 @@ color: rgb(238, 238, 236);</string>
                         <width>0</width>
                         <height>80</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
                       </property>
                       <property name="text">
                        <string>New File</string>
@@ -5827,6 +5953,15 @@ font: 14pt &quot;DejaVu Sans&quot;;
         </color>
        </brush>
       </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="NoBrush">
+        <color alpha="128">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
      </active>
      <inactive>
       <colorrole role="WindowText">
@@ -5964,6 +6099,15 @@ font: 14pt &quot;DejaVu Sans&quot;;
         </color>
        </brush>
       </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="NoBrush">
+        <color alpha="128">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
      </inactive>
      <disabled>
       <colorrole role="WindowText">
@@ -6095,6 +6239,15 @@ font: 14pt &quot;DejaVu Sans&quot;;
       <colorrole role="ToolTipText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="NoBrush">
+        <color alpha="128">
          <red>0</red>
          <green>0</green>
          <blue>0</blue>

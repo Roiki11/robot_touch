@@ -2,46 +2,40 @@
 class fileHandling:
     
     def loadFile(self):
-            fname = qt.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
+            fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
             if fname:
                 open_file = fname
                 f = open(fname[0], 'r')
+                open_program =[]
                 for line in f:
                     self.programView.addItem(line)
+                    open_program.append(line)
 
 
 
     def saveFile(self):
         global open_file
+        global open_program
 
         if open_file:
             file = open(open_file[0], 'w')
-            items=[]
-            for index in range(self.programView.count()):
-                items.append(self.programView.item(index))
-
-            for item in items:
+            for item in open_program:
                 file.write(item.text())
             file.close()
         else:
-                fname = qt.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
-                if fname:
-                    file = open(fname[0],'w')
-                    items=[]
-                    for index in range(self.programView.count()):
-                        items.append(self.programView.item(index))
-
-                    for item in items:
+                open_file = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
+                if open_file:
+                    file = open(open_file[0],'w')
+                    for item in open_program:
                         file.write(item.text())
                     file.close()
 
     def newFile(self):
         global open_file
 
-        fname = qt.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
-        if fname:
-            file = open(fname[0],'w')
+        open_file = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
+        if open_file:
+            file = open(open_file[0],'w')
             text = '## Program Start##'
             file.write(text)
-            open_file = fname
             self.programView.addItem(text)

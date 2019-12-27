@@ -38,6 +38,8 @@ class numpad(QtWidgets.QDialog, Ui_Dialog):
 
 
        self.entryline.setValidator(QtGui.QDoubleValidator(0.001,999.999,3))
+       
+       self.show()
 
     def button_clicked(self, number):
         global a
@@ -56,17 +58,7 @@ class numpad(QtWidgets.QDialog, Ui_Dialog):
 
 
 
-    def results(self):
-        if self.exec_() == QtGui.QDialog.Accepted:
-            result = self.entryline.text()
-            return result
-        else:
-            return None
+    def result(self):
+        s = numpad.entryline.text()
+        return s
 
-
-
-if __name__ == "__main__":
-    app = QApplication([])
-    window = numpad()
-    window.show()
-    sys.exit(app.exec_())
