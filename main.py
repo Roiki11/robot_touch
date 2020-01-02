@@ -7,15 +7,18 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from queue import Queue
+import rospy
 
-#from move import move
+from move import move
 #from kinematics import kinematics
 #from communications import communications
 #from calibration import calibration
 from file_handling import fileHandling
 from keypad.numpad import numpad
 
-queue = Queue()
+program_queue = Queue()
+robot_paused = False
+robot_stopped = False
 class WorkerSignals(QObject):
     finished = pyqtSignal()
     error = pyqtSignal(tuple)
@@ -23,7 +26,7 @@ class WorkerSignals(QObject):
     progress = pyqtSignal(int)
     running = pyqtSignal(bool)
 class Worker(QRunnable):
-     def __init__(self, queue, fn, *args, **kwargs, parent=None):
+     def __init__(self, fn, *args, **kwargs):
              super(Worker, self).__init__()
              # Store constructor arguments (re-used for processing)
              self.fn = fn
@@ -33,12 +36,12 @@ class Worker(QRunnable):
 
              # Add the callback to our kwargs
              self.kwargs['progress_callback'] = self.signals.progress
-    @pyqtSlot
+     @pyqtSlot
      def run(self):
-       try:
+        try:
             result = self.fn(
-                *self.args, **self.kwargs
-                status=self.signals.status
+                *self.args, **self.kwargs,
+                status=self.signals.status,
                 progress=self.signals.progress
             )
         except:
@@ -67,19 +70,19 @@ class Ui(QMainWindow):
 
 
         ##Jogging Buttons##
-        #self.jog1pos.clicked.connect(move.jogJoint(J1, 1)
-        #self.jog1pos.clicked.connect(move.jogJoint(J2, 1)
-        #self.jog1pos.clicked.connect(move.jogJoint(J3, 1)
-        #self.jog1pos.clicked.connect(move.jogJoint(J4, 1)
-        #self.jog1pos.clicked.connect(move.jogJoint(J5, 1)
-        #self.jog1pos.clicked.connect(move.jogJoint(J6, 1)
+        #self.jog1pos.clicked.connect(lambda: move.jogJoint(J1, 1)
+        #self.jog2pos.clicked.connect(lambda:move.jogJoint(J2, 1)
+        #self.jog3pos.clicked.connect(lambda:move.jogJoint(J3, 1)
+        #self.jog4pos.clicked.connect(lambda:move.jogJoint(J4, 1)
+        #self.jog5pos.clicked.connect(lambda:move.jogJoint(J5, 1)
+        #self.jog6pos.clicked.connect(lambda:move.jogJoint(J6, 1)
 
-        #self.jog1neg.clicked.connect(move.jogJoint(J1, 0))
-        #self.jog2neg.clicked.connect(move.jogJoint(J2, 0))
-        #self.jog3neg.clicked.connect(move.jogJoint(J3, 0))
-        #self.jog4neg.clicked.connect(move.jogJoint(J4, 0))
-        #self.jog5neg.clicked.connect(move.jogJoint(J5, 0))
-        #self.jog6neg.clicked.connect(move.jogJoint(J6, 0))
+        #self.jog1neg.clicked.connect(lambda:move.jogJoint(J1, 0))
+        #self.jog2neg.clicked.connect(lambda:move.jogJoint(J2, 0))
+        #self.jog3neg.clicked.connect(lambda:move.jogJoint(J3, 0))
+        #self.jog4neg.clicked.connect(lambda:move.jogJoint(J4, 0))
+        #self.jog5neg.clicked.connect(lambda:move.jogJoint(J5, 0))
+        #self.jog6neg.clicked.connect(lambda:move.jogJoint(J6, 0))
 
         self.jog_increment001.clicked.connect(lambda: self.jogIncrementSelection(0.01))
         self.jog_increment01.clicked.connect(lambda: self.jogIncrementSelection(0.01))
@@ -93,7 +96,7 @@ class Ui(QMainWindow):
             value = numpad.result(self)
             self.jogDistanceBox.setValue(float(value))
 
-    def jogIncrementSelection(self, number)
+    def jogIncrementSelection(self, number):
         jog_increment = number
         if number == 0.01:
             self.jog_increment001.setStyleSheet("backround-color: blue")
@@ -117,12 +120,37 @@ class Ui(QMainWindow):
             self.jog_increment10.setStyleSheet("background-color: rgb(186, 189, 182)")
 
     def runProgramThread(self):
-        program_queue = queue.Queue()
-        if program_queue.empty() == True:
-            #start program thread.
-        else:
-            break #Display popup that program is empty, or something.
+        global program_queue
+        while self.running:
+            if not program_queue.empty():
+               program_line = program_queue.get()
+               move.codeParser(program_line)
+               WorkerSignals.running.emit()
 
+    def start_program(self):
+        global open_program
+        global program_queue
+        for items in open_program:
+            program_queue.put()
+
+    def pause__resume_movement(self):
+        global robot_paused
+        if robot_paused is False:
+            robot.pause_movement
+            robot_paused = True
+            rospy.loginfo("Robot Movement Paused")
+        else:
+            robot.resume_movement
+            robot_paused = False
+            rospy.loginfo("Robot movement Resumed")
+
+    def stop_movement(self):
+        robot.stop_movement
+        rospy.loginfo("Robot movement Stopped")
+
+    def teach_position(self):
+        position = robot.get.current_pose()
+    
 
 
 
@@ -130,6 +158,8 @@ class Ui(QMainWindow):
 
 app = QApplication(sys.argv)
 window = Ui()
-worker=Worker()
+worker=Worker(self.runProgramThread)
+
 self.threadpool.start(worker)
+rospy.init_node("robot_program_node")
 app.exec_()

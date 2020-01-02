@@ -1,7 +1,8 @@
-
+open_program=[]
 class fileHandling:
     
     def loadFile(self):
+        global open_program
             fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
             if fname:
                 open_file = fname
