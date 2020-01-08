@@ -7,12 +7,6 @@ import math
 from pyparsing import *
 from PyQt5.QtCore import pyqtSignal, QObject
 
-__REQUIRED_API_VERSION__ = "1"  # API version
-__ROBOT_VELOCITY__ = 1        # velocity of the robot
-
-robot = Robot(__REQUIRED_API_VERSION__)
-robot_sequence = Sequence()
-
 
 """
 Moving and robot program related functions are located here. 
@@ -64,8 +58,15 @@ The parse_string function returns list object that can be queried with .get("<ke
 class Move_Signals(QObject):
     loop_program = pyqtSignal()
 class Move:
+
+    __REQUIRED_API_VERSION__ = "1"  # API version
+    __ROBOT_VELOCITY__ = 1        # velocity of the robot
+
+    robot = Robot(__REQUIRED_API_VERSION__)
+    robot_sequence = Sequence()
+    
     def __init__(self):
-        signals = Move_Signals()    
+        self.signals = Move_Signals()    
 
     def jogJoints(self, joint, direction): #function to jog a single joint with an increment
 
@@ -116,12 +117,6 @@ class Move:
         pose.qorientation = quat
 
         self.execute(Ptp, pose, params)
-
-    def teach_position(self):
-        position = robot.get.current_pose()
-
-
-
 
 
     def parse_string(input):

@@ -20,7 +20,7 @@ class circle_window(QtWidgets.QDialog, Circle_Dialog):
 
 
        @pyqtSlot
-    def Result(self):
+       def Result(self):
         s = numpad.entryline.text()
         self.circ_result.emit(s)
 

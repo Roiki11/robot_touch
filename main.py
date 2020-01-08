@@ -64,6 +64,8 @@ class Ui(QMainWindow):
         self.threadpool = QThreadPool()
 
         self.numpad = numpad()
+        self.Ros_talkers = Ros_talkers()
+        self.Move_Signals = Move_Signals()
 
         ## File handling buttons ##
         self.load_file.clicked.connect(fileHandling.loadFile)
@@ -73,14 +75,14 @@ class Ui(QMainWindow):
 
         #Key dialog for jog distance
         self.getvalue_button.clicked.connect(self.launchKeypadDialog)
-        numpad.result.connect(self.keypad_results)
+        self.numpad.result.connect(self.keypad_results)
 
         #loop program signal.
-        Move_Signals.connect(self.start_program)
+        self.Move_Signals.connect(self.start_program)
 
         self.circTeachButton.clicked.connect(self.launchCircleDialog)
 
-        Ros_talkers.encoder_feedback.connect(self.update_encoder_displays)
+        self.Ros_talkers.encoder_feedback.connect(self.update_encoder_displays)
 
         ##Jogging Buttons##
         self.jog1pos.clicked.connect(lambda:move.jogJoint(1, 1))
@@ -101,6 +103,22 @@ class Ui(QMainWindow):
         self.jog_increment01.clicked.connect(lambda: self.jogIncrementSelection(0.01))
         self.jog_increment1.clicked.connect(lambda: self.jogIncrementSelection(1))
         self.jog_increment10.clicked.connect(lambda: self.jogIncrementSelection(10))
+
+
+        def teach_joint_position(self):
+
+            position = Move.robot.get_current_joint_states()
+            
+
+        def teach_ptp_position(self):
+            position = Move.robot.get.current_pose()
+
+        def teach_lin_position(self):
+            position = Move.robot.get.current_pose()
+
+        def teach_lin_position(self):
+            position = Move.robot.get.current_pose()
+        
 
     @pyqtSlot
     def update_encoder_displays(self, data):
