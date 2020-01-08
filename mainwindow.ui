@@ -93,16 +93,61 @@ GridFrame::{ background-color: rgb(52, 101, 164);}</string>
           <property name="bottomMargin">
            <number>5</number>
           </property>
-          <item row="1" column="9">
-           <widget class="QPushButton" name="home_z">
-            <property name="text">
-             <string>HOME Z</string>
+          <item row="1" column="0">
+           <widget class="QWidget" name="error" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>45</width>
+              <height>16777215</height>
+             </size>
             </property>
             <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.2.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:state&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Flashing&quot;, &quot;expression&quot;: &quot;ch[0]==3&quot;, &quot;name&quot;: &quot;alarm&quot;}, {&quot;channels&quot;: [{&quot;url&quot;: &quot;status:state&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Enable&quot;, &quot;expression&quot;: &quot;ch[0]==3&quot;, &quot;name&quot;: &quot;enable when in alarm&quot;}]</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QPushButton" name="auto_3">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>AUTO</string>
+            </property>
+            <property name="rules" stdset="0">
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:task_mode&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;\&quot;background-color:rgb(138, 226, 52)\&quot; if ch[0]==2 else ''&quot;, &quot;name&quot;: &quot;color&quot;}]</string>
             </property>
             <property name="actionName" stdset="0">
-             <string>machine.home.joint:2</string>
+             <string>machine.mode.auto</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="power">
+            <property name="text">
+             <string>POWER</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>machine.power.toggle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8">
+           <widget class="QPushButton" name="home_y">
+            <property name="text">
+             <string>HOME Y</string>
+            </property>
+            <property name="rules" stdset="0">
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.1.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>machine.home.joint:1</string>
             </property>
            </widget>
           </item>
@@ -122,6 +167,32 @@ GridFrame::{ background-color: rgb(52, 101, 164);}</string>
             </property>
             <property name="actionName" stdset="0">
              <string>machine.mode.mdi</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="home_x">
+            <property name="text">
+             <string>HOME X</string>
+            </property>
+            <property name="rules" stdset="0">
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.0.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>machine.home.joint:0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="9">
+           <widget class="QPushButton" name="home_z">
+            <property name="text">
+             <string>HOME Z</string>
+            </property>
+            <property name="rules" stdset="0">
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.2.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>machine.home.joint:2</string>
             </property>
            </widget>
           </item>
@@ -180,77 +251,6 @@ GridFrame::{ background-color: rgb(52, 101, 164);}</string>
             </property>
             <property name="actionName" stdset="0">
              <string>machine.home.all</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="8">
-           <widget class="QPushButton" name="home_y">
-            <property name="text">
-             <string>HOME Y</string>
-            </property>
-            <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.1.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>machine.home.joint:1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="7">
-           <widget class="QPushButton" name="home_x">
-            <property name="text">
-             <string>HOME X</string>
-            </property>
-            <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:joint.0.homed&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;'background-color:rgb(150,255,150)' if ch[0] else 'background-color:rgb(240,240,80)'&quot;, &quot;name&quot;: &quot;New Rule&quot;}]</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>machine.home.joint:0</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="4">
-           <widget class="QPushButton" name="auto_3">
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>AUTO</string>
-            </property>
-            <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:task_mode&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;\&quot;background-color:rgb(138, 226, 52)\&quot; if ch[0]==2 else ''&quot;, &quot;name&quot;: &quot;color&quot;}]</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>machine.mode.auto</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="power">
-            <property name="text">
-             <string>POWER</string>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>machine.power.toggle</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QWidget" name="error" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>45</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:state&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Flashing&quot;, &quot;expression&quot;: &quot;ch[0]==3&quot;, &quot;name&quot;: &quot;alarm&quot;}, {&quot;channels&quot;: [{&quot;url&quot;: &quot;status:state&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Enable&quot;, &quot;expression&quot;: &quot;ch[0]==3&quot;, &quot;name&quot;: &quot;enable when in alarm&quot;}]</string>
             </property>
            </widget>
           </item>
@@ -850,7 +850,7 @@ background-color:rgb(52, 101, 164);
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
-                        <height>59</height>
+                        <height>50</height>
                        </size>
                       </property>
                       <property name="text">
@@ -895,8 +895,8 @@ background-color:rgb(52, 101, 164);
                     <enum>QFrame::Plain</enum>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_5">
-                    <item row="1" column="5">
-                     <widget class="QPushButton" name="jog6neg">
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="jog3pos">
                       <property name="maximumSize">
                        <size>
                         <width>16777215</width>
@@ -904,29 +904,7 @@ background-color:rgb(52, 101, 164);
                        </size>
                       </property>
                       <property name="text">
-                       <string>J6 -</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QPushButton" name="jog2neg">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J2 -</string>
+                       <string>J3 +</string>
                       </property>
                       <property name="autoRepeat">
                        <bool>true</bool>
@@ -952,182 +930,6 @@ background-color:rgb(52, 101, 164);
                       </property>
                       <property name="text">
                        <string>J2 +</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QPushButton" name="jog1neg">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J1 -</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="1" column="4">
-                     <widget class="QPushButton" name="jog5neg">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J5 -</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="1" column="3">
-                     <widget class="QPushButton" name="jog4neg">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J4 -</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QPushButton" name="jog4pos">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J4 +</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="jog5pos">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J5 +</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="jog3pos">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J3 +</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="1" column="2">
-                     <widget class="QPushButton" name="jog3neg">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J3 -</string>
-                      </property>
-                      <property name="autoRepeat">
-                       <bool>true</bool>
-                      </property>
-                      <property name="autoRepeatDelay">
-                       <number>100</number>
-                      </property>
-                      <attribute name="buttonGroup">
-                       <string notr="true">jogButtons</string>
-                      </attribute>
-                     </widget>
-                    </item>
-                    <item row="0" column="5">
-                     <widget class="QPushButton" name="jog6pos">
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J6+</string>
                       </property>
                       <property name="autoRepeat">
                        <bool>true</bool>
@@ -1259,6 +1061,204 @@ background-color:rgb(52, 101, 164);
                       </attribute>
                      </widget>
                     </item>
+                    <item row="1" column="0">
+                     <widget class="QPushButton" name="jog1neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J1 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QPushButton" name="jog3neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J3 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="0" column="3">
+                     <widget class="QPushButton" name="jog4pos">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J4 +</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="1" column="4">
+                     <widget class="QPushButton" name="jog5neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J5 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="jog2neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J2 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="0" column="4">
+                     <widget class="QPushButton" name="jog5pos">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J5 +</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="1" column="5">
+                     <widget class="QPushButton" name="jog6neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J6 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="0" column="5">
+                     <widget class="QPushButton" name="jog6pos">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J6+</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item row="1" column="3">
+                     <widget class="QPushButton" name="jog4neg">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J4 -</string>
+                      </property>
+                      <property name="autoRepeat">
+                       <bool>true</bool>
+                      </property>
+                      <property name="autoRepeatDelay">
+                       <number>100</number>
+                      </property>
+                      <attribute name="buttonGroup">
+                       <string notr="true">jogButtons</string>
+                      </attribute>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -1274,57 +1274,6 @@ background-color:rgb(52, 101, 164);
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_9">
-                 <item row="3" column="0">
-                  <widget class="QFrame" name="frame_3">
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-min-height: 50px;
-min-width: 180px;
-max-height: 50px;
-max-width: 100px;
-font: 14pt &quot;DejaVu Sans&quot;;
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-}</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_25">
-                    <item row="0" column="0">
-                     <widget class="QPushButton" name="teach_position">
-                      <property name="text">
-                       <string>Teach</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QPushButton" name="delete_line">
-                      <property name="text">
-                       <string>Delete</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QPushButton" name="insert_position">
-                      <property name="text">
-                       <string>Insert</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="3">
-                     <widget class="QPushButton" name="pushButton_8">
-                      <property name="text">
-                       <string>Insert Pos</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_2">
                    <property name="maximumSize">
@@ -1351,76 +1300,66 @@ background-color:rgb(52, 101, 164);</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0">
-                  <widget class="QFrame" name="frame_24">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2"/>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QFrame" name="frame_4">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>60</height>
-                    </size>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_3">
-                    <item>
-                     <widget class="QComboBox" name="teach_move_selection">
-                      <property name="layoutDirection">
-                       <enum>Qt::LeftToRight</enum>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">
+                 <item row="2" column="0">
+                  <widget class="QFrame" name="frame_3">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+min-height: 50px;
+min-width: 180px;
+max-height: 50px;
+max-width: 100px;
+font: 14pt &quot;DejaVu Sans&quot;;
 color: rgb(255, 255, 255);
 background-color:rgb(52, 101, 164);
-</string>
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_15">
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="linTeachButton">
+                      <property name="text">
+                       <string>Lin</string>
                       </property>
-                      <property name="currentText">
-                       <string>Joint Move</string>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="circTeachButton">
+                      <property name="text">
+                       <string>Circ</string>
                       </property>
-                      <item>
-                       <property name="text">
-                        <string>Joint Move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Linear Move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Circular move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Arc move</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Wait Input On</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Wait Input Off</string>
-                       </property>
-                      </item>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QPushButton" name="ptpTeachButton">
+                      <property name="text">
+                       <string>PtP</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="insertPositionButton">
+                      <property name="text">
+                       <string>Insert</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QPushButton" name="delete_line">
+                      <property name="text">
+                       <string>Delete</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QPushButton" name="insertPosButton">
+                      <property name="text">
+                       <string>Insert Pos</string>
+                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -2164,13 +2103,784 @@ color: rgb(238, 238, 236);</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton">
+                     <widget class="QPushButton" name="clearProgramButton">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
                         <height>80</height>
                        </size>
                       </property>
+                      <property name="text">
+                       <string>Clear</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="widget">
+             <attribute name="title">
+              <string>MDI</string>
+             </attribute>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QFrame" name="gridFrame_10">
+                <property name="maximumSize">
+                 <size>
+                  <width>9999</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="leftMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                 <item>
+                  <widget class="QFrame" name="gridFrame_11">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Box</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_59">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_53">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>1122222</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::Box</enum>
+                      </property>
+                      <property name="lineWidth">
+                       <number>2</number>
+                      </property>
+                      <property name="text">
+                       <string>MDI</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QListWidget" name="mdi_programView">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(255, 255, 255);</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_22">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+min-height: 50px;
+min-width: 100px;
+max-height: 50px;
+max-width: 150px;
+font: 14pt &quot;DejaVu Sans&quot;;
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                    <item>
+                     <widget class="QLineEdit" name="mdiEntryfield">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="frame">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="mdi_enter">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Enter</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_19">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+min-height: 50px;
+min-width: 100px;
+max-height: 50px;
+max-width: 150px;
+font: 14pt &quot;DejaVu Sans&quot;;
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_30">
+                    <item row="3" column="14">
+                     <widget class="QPushButton" name="m6_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>M6</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QPushButton" name="mdi_z_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Z</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="2">
+                     <widget class="QPushButton" name="mdi_s_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>S</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="mdi_a_3">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>A</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="mdi_q_3">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Q</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="11">
+                     <widget class="QPushButton" name="mdi_33">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>2</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="12">
+                     <widget class="QPushButton" name="pushButton_67">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>-</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="4">
+                     <widget class="QPushButton" name="mdi_k_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>K</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="mdi_i_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>I</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="4">
+                     <widget class="QPushButton" name="pushButton_70">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>+</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QPushButton" name="pushButton_63">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>H</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="4">
+                     <widget class="QPushButton" name="pushButton_66">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>D</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="4">
+                     <widget class="QPushButton" name="mdi_m_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>M</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="2">
+                     <widget class="QPushButton" name="pushButton_65">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>T</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="10">
+                     <widget class="QPushButton" name="mdi_32">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>4</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="11">
+                     <widget class="QPushButton" name="mdi_37">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>8</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QPushButton" name="mdi_g_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>G</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="10">
+                     <widget class="QPushButton" name="mdi_35">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>7</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="11">
+                     <widget class="QPushButton" name="pushButton_68">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>0</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="12">
+                     <widget class="QPushButton" name="mdi_34">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>6</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="12">
+                     <widget class="QPushButton" name="mdi_38">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>9</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="10">
+                     <widget class="QPushButton" name="pushButton_64">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>.</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="12">
+                     <widget class="QPushButton" name="mdi_30">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>3</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="13">
+                     <widget class="QPushButton" name="pushButton_69">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>G40</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="10">
+                     <widget class="QPushButton" name="mdi_31">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>1</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="11">
+                     <widget class="QPushButton" name="mdi_36">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>5</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QPushButton" name="mdi_y_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Y</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="14">
+                     <widget class="QPushButton" name="m3_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>M3</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="mdi_l_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>L</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="13">
+                     <widget class="QPushButton" name="mdi_j_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>J</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QPushButton" name="mdi_x_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>X</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QPushButton" name="mdi_p_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>P</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="14">
+                     <widget class="QPushButton" name="mdiClearButton">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>CLR</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="13">
+                     <widget class="QPushButton" name="mdiBackSpaceKey">
+                      <property name="minimumSize">
+                       <size>
+                        <width>102</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>BKSP</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_21">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+min-height: 50px;
+min-width: 150px;
+max-height: 50px;
+max-width: 250px;
+font: 14pt &quot;DejaVu Sans&quot;;
+color: rgb(255, 255, 255);
+background-color:rgb(52, 101, 164);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_32">
+                    <item row="2" column="5">
+                     <widget class="QPushButton" name="mdi_servoOff">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Servo Off</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="4">
+                     <widget class="QPushButton" name="mdi_servoOn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Servo On</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="3">
+                     <widget class="QPushButton" name="mdi_wait">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Wait</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="mdi_circular_move">
+                      <property name="text">
+                       <string>Circular</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="mdi_ptp_move">
+                      <property name="text">
+                       <string>Ptp</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QPushButton" name="mdi_relative">
+                      <property name="text">
+                       <string>Relative</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="3">
+                     <widget class="QPushButton" name="mdi_outputOn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Output On</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="4">
+                     <widget class="QPushButton" name="mdi_outputOff">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Output Off</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="5">
+                     <widget class="QPushButton" name="mdi_callProgram">
+                      <property name="minimumSize">
+                       <size>
+                        <width>152</width>
+                        <height>52</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Call Program</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QPushButton" name="mdi_linear_move">
+                      <property name="text">
+                       <string>Linear</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="mdi_sequence_start">
+                      <property name="text">
+                       <string>Sequence Start</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="2">
+                     <widget class="QPushButton" name="mdi_sequence_end">
+                      <property name="text">
+                       <string>Sequence End</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="6">
+                     <widget class="QPushButton" name="mdi_loop">
+                      <property name="text">
+                       <string>Loop</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="6">
+                     <widget class="QPushButton" name="pushButton_11">
                       <property name="text">
                        <string>PushButton</string>
                       </property>
@@ -3268,735 +3978,6 @@ background-color:rgb(52, 101, 164);</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="widget">
-             <attribute name="title">
-              <string>MDI</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QFrame" name="gridFrame_10">
-                <property name="maximumSize">
-                 <size>
-                  <width>9999</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_8">
-                 <property name="leftMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>5</number>
-                 </property>
-                 <item>
-                  <widget class="QFrame" name="gridFrame_11">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_59">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_53">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>1122222</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::Box</enum>
-                      </property>
-                      <property name="lineWidth">
-                       <number>2</number>
-                      </property>
-                      <property name="text">
-                       <string>MDI</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QListWidget" name="mdi_programView">
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="frame_22">
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-min-height: 50px;
-min-width: 100px;
-max-height: 50px;
-max-width: 150px;
-font: 14pt &quot;DejaVu Sans&quot;;
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-}</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_8">
-                    <item>
-                     <widget class="QLineEdit" name="mdiEntryfield">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="frame">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="mdi_enter">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>152</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Enter</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="frame_19">
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-min-height: 50px;
-min-width: 100px;
-max-height: 50px;
-max-width: 150px;
-font: 14pt &quot;DejaVu Sans&quot;;
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-}</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_30">
-                    <item row="3" column="14">
-                     <widget class="QPushButton" name="m6_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>M6</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="1">
-                     <widget class="QPushButton" name="mdi_z_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Z</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QPushButton" name="mdi_s_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>S</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QPushButton" name="mdi_a_3">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>A</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="mdi_q_3">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Q</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="11">
-                     <widget class="QPushButton" name="mdi_33">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>2</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="12">
-                     <widget class="QPushButton" name="pushButton_67">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>-</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="4">
-                     <widget class="QPushButton" name="mdi_k_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>K</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QPushButton" name="mdi_i_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>I</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="4">
-                     <widget class="QPushButton" name="pushButton_70">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>+</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="2">
-                     <widget class="QPushButton" name="pushButton_63">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>H</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="4">
-                     <widget class="QPushButton" name="pushButton_66">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>D</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="mdi_m_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>M</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="2">
-                     <widget class="QPushButton" name="pushButton_65">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>T</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="10">
-                     <widget class="QPushButton" name="mdi_32">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>4</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="11">
-                     <widget class="QPushButton" name="mdi_37">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>8</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <widget class="QPushButton" name="mdi_g_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>G</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="10">
-                     <widget class="QPushButton" name="mdi_35">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>7</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="11">
-                     <widget class="QPushButton" name="pushButton_68">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>0</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="12">
-                     <widget class="QPushButton" name="mdi_34">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>6</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="12">
-                     <widget class="QPushButton" name="mdi_38">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>9</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="10">
-                     <widget class="QPushButton" name="pushButton_64">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>.</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="12">
-                     <widget class="QPushButton" name="mdi_30">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>3</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="13">
-                     <widget class="QPushButton" name="pushButton_69">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>G40</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="10">
-                     <widget class="QPushButton" name="mdi_31">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>1</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="11">
-                     <widget class="QPushButton" name="mdi_36">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>5</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QPushButton" name="mdi_y_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Y</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="14">
-                     <widget class="QPushButton" name="m3_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>M3</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QPushButton" name="mdi_l_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>L</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="13">
-                     <widget class="QPushButton" name="mdi_j_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>J</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QPushButton" name="mdi_x_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>X</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QPushButton" name="mdi_p_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>102</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>P</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="frame_21">
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-min-height: 50px;
-min-width: 200px;
-max-height: 50px;
-max-width: 250px;
-font: 14pt &quot;DejaVu Sans&quot;;
-color: rgb(255, 255, 255);
-background-color:rgb(52, 101, 164);
-}</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_32">
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="mdi_outputOff">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Output Off</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QPushButton" name="mdi_servoOn">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Servo On</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="4">
-                     <widget class="QPushButton" name="mdiClearButton">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>CLR</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QPushButton" name="mdi_wait">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Wait</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QPushButton" name="mdi_outputOn">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Output On</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QPushButton" name="mdiBackSpaceKey">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>BKSP</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QPushButton" name="mdi_callProgram">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Call Program</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="3">
-                     <widget class="QPushButton" name="mdi_servoOFf">
-                      <property name="minimumSize">
-                       <size>
-                        <width>202</width>
-                        <height>52</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>Servo Off</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QPushButton" name="pushButton_3">
-                      <property name="text">
-                       <string>Move Joint</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QPushButton" name="pushButton_4">
-                      <property name="text">
-                       <string>Move Linear</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="tab_5">
              <attribute name="title">
               <string>Sett</string>
@@ -4016,7 +3997,7 @@ font: 14pt &quot;DejaVu Sans&quot;; }
                  <enum>QTabWidget::Rounded</enum>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>0</number>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -5636,7 +5617,11 @@ font: 14pt &quot;DejaVu Sans&quot;; }
              <attribute name="title">
               <string>Rviz</string>
              </attribute>
-             <layout class="QGridLayout" name="gridLayout_12"/>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="0" column="0">
+               <widget class="MyViz" name="rvizWidget" native="true"/>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>
@@ -5671,6 +5656,19 @@ font: 14pt &quot;DejaVu Sans&quot;;
           <property name="horizontalSpacing">
            <number>18</number>
           </property>
+          <item row="0" column="5">
+           <widget class="QPushButton" name="floodtoggle">
+            <property name="text">
+             <string>COOL</string>
+            </property>
+            <property name="rules" stdset="0">
+             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:flood&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;\&quot;background-color:rgb(138, 226, 52)\&quot; if ch[0]&lt;&gt;0 else ''&quot;, &quot;name&quot;: &quot;backround color&quot;}]</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>coolant_actions.flood.toggle</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="7">
            <widget class="QPushButton" name="Block_delete">
             <property name="text">
@@ -5687,72 +5685,6 @@ font: 14pt &quot;DejaVu Sans&quot;;
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="step">
-            <property name="text">
-             <string>STEP</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>program.step</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="pause">
-            <property name="text">
-             <string>PAUSE</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>program.pause</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="run">
-            <property name="text">
-             <string>RUN</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>program.run</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="abort">
-            <property name="text">
-             <string>ABORT</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>program.abort</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="resume">
-            <property name="text">
-             <string>RESUME</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>program.resume</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QPushButton" name="floodtoggle">
-            <property name="text">
-             <string>COOL</string>
-            </property>
-            <property name="rules" stdset="0">
-             <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:flood&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Style Sheet&quot;, &quot;expression&quot;: &quot;\&quot;background-color:rgb(138, 226, 52)\&quot; if ch[0]&lt;&gt;0 else ''&quot;, &quot;name&quot;: &quot;backround color&quot;}]</string>
-            </property>
-            <property name="actionName" stdset="0">
-             <string>coolant_actions.flood.toggle</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="6">
            <widget class="QPushButton" name="optional_stop">
             <property name="styleSheet">
@@ -5766,6 +5698,59 @@ font: 14pt &quot;DejaVu Sans&quot;;
             </property>
             <property name="actionName" stdset="0">
              <string>program.optional-stop.toggle</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pause">
+            <property name="text">
+             <string>PAUSE</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>program.pause</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="resume">
+            <property name="text">
+             <string>RESUME</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>program.resume</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="step">
+            <property name="text">
+             <string>STEP</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>program.step</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="abort">
+            <property name="text">
+             <string>ABORT</string>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>program.abort</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="run">
+            <property name="text">
+             <string>RUN</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="actionName" stdset="0">
+             <string>program.run</string>
             </property>
            </widget>
           </item>
@@ -5811,6 +5796,14 @@ font: 14pt &quot;DejaVu Sans&quot;;
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyViz</class>
+   <extends>QWidget</extends>
+   <header>Rviz</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <buttongroups>

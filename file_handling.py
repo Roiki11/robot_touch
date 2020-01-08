@@ -3,14 +3,14 @@ class fileHandling:
     
     def loadFile(self):
         global open_program
-            fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
-            if fname:
-                open_file = fname
-                f = open(fname[0], 'r')
-                open_program =[]
-                for line in f:
-                    self.programView.addItem(line)
-                    open_program.append(line)
+        fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
+        if fname:
+            open_file = fname
+            f = open(fname[0], 'r')
+            open_program =[]
+            for line in f:
+                self.programView.addItem(line)
+                open_program.append(line)
 
 
 
