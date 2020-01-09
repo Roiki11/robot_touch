@@ -6,22 +6,22 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from queue import Queue
-import rospy
+#from queue import Queue
 
-from move import Move, Move_Signals
+
+#from move import Move, Move_Signals
 #from calibration import calibration
-from file_handling import fileHandling
 from keypad.numpad import numpad
-from circle_window import circle_window
-from Rviz.Rviz import Rviz
-from ros_publsher_subsriber import Ros_talkers
+#from circle_window import circle_window
+#from Rviz.Rviz import Rviz
+#from ros_publsher_subsriber import Ros_talkers
 
-program_queue = Queue()
-robot_paused = False
-robot_stopped = False
-jog_increment = 1
+#program_queue = Queue()
+#robot_paused = False
+#robot_stopped = False
+#jog_increment = 1
 
+"""
 class WorkerSignals(QObject):
     finished = pyqtSignal()
     error = pyqtSignal(tuple)
@@ -42,7 +42,7 @@ class Worker(QRunnable):
 
              # Add the callback to our kwargs
              self.kwargs['progress_callback'] = self.signals.progress
-     @pyqtSlot
+     @pyqtSlot()
      def run(self):
         try:
             result = self.fn(*self.args, **self.kwargs)
@@ -54,37 +54,38 @@ class Worker(QRunnable):
             self.signals.result.emit(result)  # Return the result of the processing
         finally:
             self.signals.finished.emit()  # Done
-
+"""
 class Ui(QMainWindow):
     def __init__(self):
         # Call the inherited classes __init__ method
         super(Ui, self).__init__()
         ui_file = os.path.join(sys.path[0], 'mainwindow.ui')
         uic.loadUi(ui_file, self)  # Load the .ui file
-        self.threadpool = QThreadPool()
+        self.show()
+        #self.threadpool = QThreadPool()
 
         self.numpad = numpad()
-        self.Ros_talkers = Ros_talkers()
-        self.Move_Signals = Move_Signals()
+        #self.Ros_talkers = Ros_talkers()
+        #self.Move_Signals = Move_Signals()
+        
 
         ## File handling buttons ##
-        self.load_file.clicked.connect(fileHandling.loadFile)
-        self.save_file.clicked.connect(fileHandling.saveFile)
-        self.new_File.clicked.connect(fileHandling.newFile)
+        self.load_file.clicked.connect(self.loadFile)
+        self.save_file.clicked.connect(self.saveFile)
+        self.new_File.clicked.connect(self.newFile)
 
 
         #Key dialog for jog distance
         self.getvalue_button.clicked.connect(self.launchKeypadDialog)
-        self.numpad.result.connect(self.keypad_results)
 
         #loop program signal.
-        self.Move_Signals.connect(self.start_program)
+        #self.Move_Signals.connect(self.start_program)
 
-        self.circTeachButton.clicked.connect(self.launchCircleDialog)
+       # self.circTeachButton.clicked.connect(self.launchCircleDialog)
 
-        self.Ros_talkers.encoder_feedback.connect(self.update_encoder_displays)
+        #self.Ros_talkers.encoder_feedback.connect(self.update_encoder_displays)
 
-        ##Jogging Buttons##
+    """        ##Jogging Buttons##
         self.jog1pos.clicked.connect(lambda:move.jogJoint(1, 1))
         self.jog2pos.clicked.connect(lambda:move.jogJoint(2, 1))
         self.jog3pos.clicked.connect(lambda:move.jogJoint(3, 1))
@@ -108,7 +109,7 @@ class Ui(QMainWindow):
         def teach_joint_position(self):
 
             position = Move.robot.get_current_joint_states()
-            
+
 
         def teach_ptp_position(self):
             position = Move.robot.get.current_pose()
@@ -116,11 +117,11 @@ class Ui(QMainWindow):
         def teach_lin_position(self):
             position = Move.robot.get.current_pose()
 
-        def teach_lin_position(self):
+        def teach_circ_position(self):
             position = Move.robot.get.current_pose()
-        
-
-    @pyqtSlot
+   """
+    
+    @pyqtSlot(result=QVariant)
     def update_encoder_displays(self, data):
         self.j1pos.update(data[0])
         self.j2pos.update(data[1])
@@ -130,10 +131,14 @@ class Ui(QMainWindow):
         self.j6pos.update(data[5])
 
     def launchKeypadDialog(self):
-        self.numpad.show()
+        result = self.numpad.exec_()
+        if result:
+            a=str(result)
+            sys.stderr.write(a)
+            #self.jogDistanceBox.value(result)
         
     def launchCircleDialog(self):
-        self.circle_window.show()
+        circle_window.show()
 
     def jogIncrementSelection(self, number):
         global jog_increment
@@ -199,9 +204,48 @@ class Ui(QMainWindow):
         open_program = []
         self.programView.clear()
 
-    @pyqtSlot(float)
-    def keypad_results(self, number):
-        self.jogDistanceBox.setValue(number)
+
+
+    def loadFile(self):
+        global open_program
+        global open_file
+        fname = QFileDialog.getOpenFileName(self, 'Open file', '/Desktop',"Text Files (*.txt)")
+        if fname:
+            open_file = fname
+            f = open(fname[0], 'r')
+            open_program =[]
+            for line in f:
+                self.programView.addItem(line)
+                open_program.append(line)
+
+
+
+    def saveFile(self):
+        global open_file
+        global open_program
+
+        if open_file:
+            file = open(open_file[0], 'w')
+            for item in open_program:
+                file.write(item.text())
+            file.close()
+        else:
+                open_file = QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
+                if open_file:
+                    file = open(open_file[0],'w')
+                    for item in open_program:
+                        file.write(item.text())
+                    file.close()
+
+    def newFile(self):
+        global open_file
+
+        open_file = QFileDialog.getSaveFileName(self, 'Save File as', '/Desktop', '*.txt')
+        if open_file:
+            file = open(open_file[0],'w')
+            text = '## Program Start##'
+            file.write(text)
+            self.programView.addItem(text)
     
 
 
@@ -210,11 +254,11 @@ class Ui(QMainWindow):
 
 app = QApplication(sys.argv)
 window = Ui()
-worker1 = Worker(self.runProgramThread)
-worker2 = Worker(Ros_talkers.listener)
-self.threadpool.start(worker1)
-self.threadpool.start(worker2)
-rospy.init_node("robot_program_node")
+#worker1 = Worker(self.runProgramThread)
+#worker2 = Worker(Ros_talkers.listener)
+#self.threadpool.start(worker1)
+#self.threadpool.start(worker2)
+#rospy.init_node("robot_program_node")
 app.exec_()
 
 

@@ -1,11 +1,17 @@
 #!/usr/bin/env python
-
-import rospy
-from geometry_msgs.msg import Pose, Point, Quaternion
-from pilz_robot_programming.robot import *
 import math 
 from pyparsing import *
 from PyQt5.QtCore import pyqtSignal, QObject
+
+try:
+    import rospy
+    from geometry_msgs.msg import Pose, Point, Quaternion
+except ImportError:
+    import pyros_setup
+    pyros_setup.configurable_import().configure('myself.cfg').activate()
+    import rospy
+    from geometry_msgs.msg import Pose, Point, Quaternion
+    from pilz_robot_programming.robot import Robot
 
 
 """

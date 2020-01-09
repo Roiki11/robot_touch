@@ -1,9 +1,13 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
 open_program=[]
-class fileHandling:
+open_file = ""
+
+class fileHandling(QtWidgets.QWidget):
     
     def loadFile(self):
         global open_program
-        fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop')
+        global open_file
+        fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open file', '/Desktop',"Text Files (*.txt)")
         if fname:
             open_file = fname
             f = open(fname[0], 'r')

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import *
 
 path = os.path.dirname(__file__)
 qtCreatorFile = "dialog.ui"
@@ -20,7 +20,7 @@ class numpad(QtWidgets.QDialog, Ui_Dialog):
     def __init__(self):
        super(numpad, self).__init__()
        self.setupUi(self)
-       result = pyqtSignal(float)
+       self.result = None
 
        self.num0.clicked.connect(lambda: self.button_clicked("0"))
        self.num1.clicked.connect(lambda: self.button_clicked("1"))
@@ -42,7 +42,7 @@ class numpad(QtWidgets.QDialog, Ui_Dialog):
 
        self.entryline.setValidator(QtGui.QDoubleValidator(0.001,999.999,3))
        
-       self.show()
+       
 
     def button_clicked(self, number):
         global a
@@ -59,9 +59,13 @@ class numpad(QtWidgets.QDialog, Ui_Dialog):
         a=[]
         b=""
 
+    def get_result(self):
+        result = float(self.entryline.text())
 
-    @pyqtSlot
+
+    
     def Result(self):
-        s = numpad.entryline.text()
-        self.result.emit(s)
+        super(numpad,self).exec_()
+        self.clear_text()
+        return self.result
 

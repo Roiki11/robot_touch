@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import *
 
 path = os.path.dirname(__file__)
 qtCreatorFile = "circle_dialog.ui"
@@ -16,11 +17,11 @@ class circle_window(QtWidgets.QDialog, Circle_Dialog):
        super(numpad, self).__init__()
        self.setupUi(self)
        circ_result = pyqtSignal(float)
-        
+       self.show()
 
 
-       @pyqtSlot
-       def Result(self):
+    @pyqtSlot()
+    def Result(self):
         s = numpad.entryline.text()
         self.circ_result.emit(s)
 

@@ -1965,15 +1965,6 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                               </color>
                              </brush>
                             </colorrole>
-                            <colorrole role="PlaceholderText">
-                             <brush brushstyle="NoBrush">
-                              <color alpha="128">
-                               <red>238</red>
-                               <green>238</green>
-                               <blue>236</blue>
-                              </color>
-                             </brush>
-                            </colorrole>
                            </active>
                            <inactive>
                             <colorrole role="WindowText">
@@ -2030,15 +2021,6 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                               </color>
                              </brush>
                             </colorrole>
-                            <colorrole role="PlaceholderText">
-                             <brush brushstyle="NoBrush">
-                              <color alpha="128">
-                               <red>238</red>
-                               <green>238</green>
-                               <blue>236</blue>
-                              </color>
-                             </brush>
-                            </colorrole>
                            </inactive>
                            <disabled>
                             <colorrole role="WindowText">
@@ -2092,15 +2074,6 @@ QLabel {font: 16pt &quot;DejaVu Sans&quot;;}
                                <red>239</red>
                                <green>41</green>
                                <blue>41</blue>
-                              </color>
-                             </brush>
-                            </colorrole>
-                            <colorrole role="PlaceholderText">
-                             <brush brushstyle="NoBrush">
-                              <color alpha="128">
-                               <red>238</red>
-                               <green>238</green>
-                               <blue>236</blue>
                               </color>
                              </brush>
                             </colorrole>
@@ -5688,11 +5661,7 @@ font: 14pt &quot;DejaVu Sans&quot;; }
              <attribute name="title">
               <string>Rviz</string>
              </attribute>
-             <layout class="QGridLayout" name="gridLayout_12">
-              <item row="0" column="0">
-               <widget class="MyViz" name="rvizWidget" native="true"/>
-              </item>
-             </layout>
+             <layout class="QGridLayout" name="gridLayout_12"/>
             </widget>
            </widget>
           </item>
@@ -5867,14 +5836,6 @@ font: 14pt &quot;DejaVu Sans&quot;;
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MyViz</class>
-   <extends>QWidget</extends>
-   <header>Rviz</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
  <buttongroups>
@@ -6011,15 +5972,6 @@ font: 14pt &quot;DejaVu Sans&quot;;
       <colorrole role="ToolTipText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
-        </color>
-       </brush>
-      </colorrole>
-      <colorrole role="PlaceholderText">
-       <brush brushstyle="NoBrush">
-        <color alpha="128">
          <red>0</red>
          <green>0</green>
          <blue>0</blue>
@@ -6163,15 +6115,6 @@ font: 14pt &quot;DejaVu Sans&quot;;
         </color>
        </brush>
       </colorrole>
-      <colorrole role="PlaceholderText">
-       <brush brushstyle="NoBrush">
-        <color alpha="128">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
-        </color>
-       </brush>
-      </colorrole>
      </inactive>
      <disabled>
       <colorrole role="WindowText">
@@ -6303,15 +6246,6 @@ font: 14pt &quot;DejaVu Sans&quot;;
       <colorrole role="ToolTipText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
-        </color>
-       </brush>
-      </colorrole>
-      <colorrole role="PlaceholderText">
-       <brush brushstyle="NoBrush">
-        <color alpha="128">
          <red>0</red>
          <green>0</green>
          <blue>0</blue>
